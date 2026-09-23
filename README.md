@@ -1,48 +1,83 @@
-![Deploy gh-pages](https://github.com/realdennis/md2pdf/actions/workflows/deploy.yaml/badge.svg)
+# md2pdf
 
-# Markdown2PDF 
-English | [简体中文(Simplified Chinese)](./README_cn.md) | [繁體中文(Traditional Chinese)](./README_tc.md)  
-https://realdennis.github.io/md2pdf/
+Awesome **Markdown to PDF**, fully offline. A client-side editor + preview that prints to PDF through the browser — no server ever sees your document.
 
+[简体中文(Simplified Chinese)](./README_cn.md) | [繁體中文(Traditional Chinese)](./README_tc.md)
 
-![It just works!](https://media.giphy.com/media/MuAtuqUGnn2PKsXhs6/giphy.gif)
+## How to use
 
-![Upload](https://media.giphy.com/media/cZ1f4b46P3LGszuXuy/giphy.gif)
+1. Click **Choose** (or drag a `.md` file anywhere onto the window) to load a document.
+2. Edit in the left panel — the preview on the right updates live.
+3. Click **Export → Print / Save as PDF**.
+4. In the print dialog switch **Destination** to _Save as PDF_. Chrome is recommended.
 
-> Awesome Markdown to PDF!
-```diff
-- Online? Upload resume.md to stranger server?
-+ Try Offline Web App!
-```
+Your draft is auto-saved to localStorage, so a refresh never loses work. **Reset** restores the feature-tour sample.
 
-## How to use md2pdf?
-1. Click button choose `.md` file.
-2. Edit in editor (left panel).
-3. Click **Transform**!
-4. Switch 'Destination' to **Save as PDF**.
-4. **Chrome recommended**
+## Supported Markdown
+
+| Feature           | Syntax                                                                               | Notes                                         |
+| ----------------- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
+| GFM               | tables, `- [x]` tasks, `~~strike~~`, autolinks, `[^footnotes]`                       | full GitHub-flavored baseline                 |
+| Alerts            | `> [!NOTE]` `[!TIP]` `[!IMPORTANT]` `[!WARNING]` `[!CAUTION]`                        | rendered like github.com                      |
+| Math              | `$...$`, `$$...$$`                                                                   | KaTeX                                         |
+| Diagrams          | ` ```mermaid `                                                                       | flowchart, sequence, gantt, etc., lazy-loaded |
+| Highlight         | `==marked==`                                                                         | `<mark>`                                      |
+| Sub/Superscript   | `H~2~O`, `x^2^`                                                                      | Pandoc rules — no spaces inside markers       |
+| Emoji             | `:rocket:`                                                                           | GitHub shortcodes                             |
+| Definition lists  | `Term` + `: definition`                                                              | PHP Markdown Extra style                      |
+| Smart punctuation | `"quotes"`, `--`, `...`                                                              | typographic dashes/quotes                     |
+| Front matter      | `---\ntitle: …\n---`                                                                 | `title` becomes the PDF file name             |
+| Containers        | `:::note`, `:::tip`, `:::warning`, `:::caution`, `:::important`, `:::details[Label]` | Docusaurus-style directives                   |
+| Table of contents | `[TOC]` on its own line                                                              | linked outline of H1–H3                       |
+| Page break        | `\newpage` or `\pagebreak` paragraph, or `:::pagebreak`                              | starts a fresh PDF page                       |
+| Raw HTML          | `<span style="color:red">…`                                                          | always enabled — the app is local-only        |
+
+Images pasted or dropped into the editor are embedded as base64 data URIs, so the exported PDF/HTML is fully self-contained.
+
+## Export
+
+- **Print / Save as PDF** — the document title (front matter `title` or the first `#` heading) becomes the suggested file name.
+- **Download .md / .html** — raw source or a standalone HTML snapshot.
+- **Page setup** — paper format (A4/Letter/Legal), orientation, margin presets.
+- **Advanced pagination** — enable _paged.js_ mode to get real page numbers (`N / total`) and a running header on every page.
+
+## Editor
+
+- CodeMirror 6 with markdown (GFM) syntax highlighting.
+- Drag the bar between the panes to resize; **Sync scroll** links scrolling.
+- Status bar: words, characters, lines, cursor position.
+
+## Offline / PWA
+
+The app is a Progressive Web App: after the first visit it works fully offline and can be installed (service worker via vite-plugin-pwa).
 
 ## Using Docker
 
-1. Install docker on your platform
-2. Clone the repository
-3. `cd` into `md2pdf`
-4. Run `docker compose up -d` inside the directory
+1. Install Docker.
+2. Clone the repository and `cd` into it.
+3. Run `docker compose up -d`.
 
-The docker compose binds the web server to `localhost:8080` by default. You can change this by finding the `ports` line in `docker-compose.yaml`.
+The compose file binds the app to `localhost:8080` (nginx serving the static `dist/` build). Change the `ports` line in `docker-compose.yaml` to use another port.
 
-**Note**: This docker compose uses the build directive, so your system will go build and optimize the code itself.
-The application is hosted locally through nginx which is what binds to port 8080.
+## Development
+
+Requires Node.js ≥ 20.19 and pnpm (via `corepack enable`).
+
+```bash
+pnpm install        # install dependencies
+pnpm dev            # dev server
+pnpm build          # production build → dist/
+pnpm preview        # serve the production build
+pnpm test           # vitest suite
+pnpm lint           # eslint
+pnpm typecheck      # tsc --noEmit
+```
+
+Tech: Vite 8, React 19, TypeScript, react-markdown (unified/remark/rehype), CodeMirror 6, SCSS modules, vite-plugin-pwa.
 
 ## Tips
-- `Resize` the layout what you want.
-- After click `Transform` button, inverse the checkbox of **'Headers and Footers'**. 
-- **反選頁首與頁尾**.
 
-## What's special?
-- You can use <span style="color:#0984e3">html</span> tag!
-<blockquote>Hey I'm in blockquote!</blockquote>
+- In the print dialog, toggle **Headers and footers** off for a clean PDF.
+- Long diagrams and wide formulas scroll on screen but paginate cleanly in print.
 
----
-
-LICENSE MIT © 2019 realdennis
+LICENSE MIT © 2019 realdennis, © 2026 overklassniy

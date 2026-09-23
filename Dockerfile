@@ -1,13 +1,16 @@
-FROM node:14.21.3-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
-COPY ./ /app
+RUN corepack enable
 
-RUN yarn install --frozen-lockfile
-RUN yarn build
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-FROM nginx AS dist
+COPY . .
+RUN pnpm build
 
-COPY --from=build /app/build /usr/share/nginx/html
+FROM nginx:alpine AS dist
+
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80

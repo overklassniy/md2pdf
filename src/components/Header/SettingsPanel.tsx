@@ -1,5 +1,5 @@
 import Dropdown from './Dropdown';
-import { type PageSettings } from '../../print/pageSettings';
+import { type PageSettings } from '../../export/pageSettings';
 import styles from './Header.module.scss';
 
 interface SettingsPanelProps {

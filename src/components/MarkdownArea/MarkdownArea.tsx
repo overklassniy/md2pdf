@@ -1,11 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 import type { EditorView } from '@codemirror/view';
-import Editor, { type CursorPosition } from './Editor/Editor';
-import DragBar from './Editor/DragBar';
-import PreviewArea from './Preview/PreviewArea';
-import { useApp } from '../state/context';
-import { useDrop } from '../hooks/useDrop';
-import { useScrollSync } from '../hooks/useScrollSync';
+import Editor, { type CursorPosition } from '../Editor/Editor';
+import DragBar from '../Editor/DragBar';
+import PreviewArea from '../Preview/PreviewArea';
+import { useApp } from '../../state/context';
+import { useDrop } from '../../hooks/useDrop';
+import { useScrollSync } from '../../hooks/useScrollSync';
 
 interface MarkdownAreaProps {
   onCursorChange: (pos: CursorPosition) => void;

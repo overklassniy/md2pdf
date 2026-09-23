@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { PageSettings } from '../print/pageSettings';
+import type { PageSettings } from '../export/pageSettings';
 
 export interface AppContextValue {
   text: string;

@@ -1,4 +1,4 @@
-import type { PageSettings } from '../print/pageSettings';
+import type { PageSettings } from '../export/pageSettings';
 
 const STORAGE_KEY = 'md2pdf:v1';
 

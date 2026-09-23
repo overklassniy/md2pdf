@@ -13,6 +13,6 @@ Top application bar.
 
 ## Dependencies
 
-Uses `state/context` for text and settings; `print/print.ts` and
-`print/exportFile.ts` perform the exports. The GitHub star iframe points to
+Uses `state/context` for text and settings; `export/print.ts` and
+`export/exportFile.ts` perform the exports. The GitHub star iframe points to
 `overklassniy/md2pdf`.

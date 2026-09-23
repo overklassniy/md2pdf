@@ -2,8 +2,8 @@ import UploadButton from './UploadButton';
 import ExportMenu from './ExportMenu';
 import SettingsPanel from './SettingsPanel';
 import { useApp } from '../../state/context';
-import { printDocument } from '../../print/print';
-import { exportHtml, exportMarkdown } from '../../print/exportFile';
+import { printDocument } from '../../export/print';
+import { exportHtml, exportMarkdown } from '../../export/exportFile';
 import styles from './Header.module.scss';
 
 interface HeaderProps {

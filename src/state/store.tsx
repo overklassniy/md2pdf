@@ -9,7 +9,7 @@ import {
 import {
   DEFAULT_PAGE_SETTINGS,
   type PageSettings,
-} from '../print/pageSettings';
+} from '../export/pageSettings';
 import { loadPersistedState, persistState } from './persistence';
 import { SAMPLE_DOCUMENT } from '../sample';
 import { AppContext, type AppContextValue } from './context';

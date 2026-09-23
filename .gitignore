@@ -4,3 +4,9 @@ dev-dist/
 coverage/
 *.log
 .DS_Store
+
+# Local env files and overrides
+*.local
+.env
+.env.*
+!.env.example

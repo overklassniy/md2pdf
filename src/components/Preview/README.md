@@ -15,4 +15,4 @@ Right-pane rendered document.
 
 `markdown/pipeline.ts` and `markdown/components.tsx` define the whole
 rendering contract. The element with class `.preview` inside the wrapper is
-what the print/export code reads.
+what the export code (`export/print.ts`, `export/exportFile.ts`) reads.

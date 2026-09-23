@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { loadPersistedState, persistState } from './persistence';
-import { DEFAULT_PAGE_SETTINGS } from '../print/pageSettings';
+import { DEFAULT_PAGE_SETTINGS } from '../export/pageSettings';
 
 describe('persistence', () => {
   beforeEach(() => {

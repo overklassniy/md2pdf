@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import Header from './components/Header/Header';
-import MarkdownArea from './components/MarkdownArea';
+import MarkdownArea from './components/MarkdownArea/MarkdownArea';
 import StatusBar from './components/StatusBar/StatusBar';
 import { AppProvider } from './state/store';
 import type { CursorPosition } from './components/Editor/Editor';

@@ -11,7 +11,7 @@ Application source code for md2pdf.
 - `vite-env.d.ts` — Vite and vite-plugin-pwa ambient types.
 - `components/` — UI components (header, editor, preview, status bar, split area).
 - `markdown/` — the unified/remark/rehype rendering pipeline and local plugins.
-- `print/` — PDF print flow, `@page` settings, file export helpers.
+- `export/` — PDF print flow, `@page` settings, file download helpers.
 - `state/` — React context store and localStorage persistence.
 - `hooks/` — reusable hooks (scroll sync, drag-and-drop).
 - `styles/` — global, print and preview SCSS.
@@ -21,5 +21,5 @@ Application source code for md2pdf.
 ## Dependencies
 
 React 19, CodeMirror 6, react-markdown. Imports flow downward only:
-`components` use `state`, `hooks`, `markdown` and `print`; nothing here imports
+`components` use `state`, `hooks`, `markdown` and `export`; nothing here imports
 upward into `main.tsx` except through `App`.

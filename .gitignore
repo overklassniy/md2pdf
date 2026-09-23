@@ -1,4 +1,6 @@
 node_modules
-build/
+dist/
+dev-dist/
 coverage/
-yarn-error.log
+*.log
+.DS_Store

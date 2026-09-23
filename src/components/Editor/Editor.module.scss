@@ -1,0 +1,20 @@
+.editor {
+  flex-shrink: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+}
+
+.codemirror {
+  height: 100%;
+
+  :global(.cm-editor) {
+    height: 100%;
+  }
+
+  :global(.cm-scroller) {
+    line-height: 1.5;
+    font-family:
+      ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+}

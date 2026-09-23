@@ -1,0 +1,32 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  height: 100%;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 0 10px;
+  cursor: pointer;
+  background: transparent;
+  font: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 10;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

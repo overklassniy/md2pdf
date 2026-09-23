@@ -1,0 +1,12 @@
+.dragbar {
+  width: 15px;
+  flex-shrink: 0;
+  background-color: rgb(233, 233, 233);
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+
+  &.active {
+    background-color: #0984e3;
+  }
+}

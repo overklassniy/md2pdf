@@ -1,0 +1,81 @@
+// Fragmentation rules are intentionally NOT wrapped in @media print:
+// paged.js paginates in screen context and must see them too, and they are
+// harmless during normal screen rendering.
+
+pre,
+table,
+img,
+blockquote,
+.katex-display,
+.mermaid,
+.directive,
+.markdown-alert,
+details {
+  break-inside: avoid;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  break-after: avoid;
+}
+
+.page-break {
+  break-after: page;
+}
+
+@media screen {
+  // On screen a page break marker is shown as a dashed rule so authors can
+  // see where the PDF will split.
+  .page-break {
+    border-top: 1px dashed #d0d7de;
+    margin: 24px 0;
+    position: relative;
+    height: 0;
+  }
+
+  .page-break::after {
+    content: 'Page break';
+    position: absolute;
+    top: -0.7em;
+    left: 0;
+    font-size: 0.7em;
+    color: #57606a;
+    background: #ffffff;
+    padding-right: 6px;
+  }
+}
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  #root,
+  .app,
+  .app__main {
+    display: block;
+    height: auto;
+  }
+
+  // In paged mode the live app is replaced by the generated page boxes.
+  body.paged-ready {
+    #root {
+      display: none !important;
+    }
+
+    #print-root {
+      display: block;
+    }
+  }
+}
+
+// The paged.js output lives outside the app root so it can replace the
+// whole screen content while printing.
+#print-root {
+  display: none;
+}

@@ -1,0 +1,17 @@
+.statusbar {
+  flex-shrink: 0;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 10px;
+  font-size: 0.75em;
+  color: #57606a;
+  background-color: rgb(233, 233, 233);
+  border-top: 1px solid #d0d7de;
+  user-select: none;
+}
+
+.spacer {
+  flex: 1;
+}

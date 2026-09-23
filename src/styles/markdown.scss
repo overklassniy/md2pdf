@@ -1,0 +1,131 @@
+// Preview-specific styles layered on top of github-markdown-css.
+// Covers features the GitHub stylesheet does not know about:
+// mermaid diagrams, directives, mark highlight, TOC, KaTeX scrolling.
+
+.preview {
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+
+    svg {
+      max-width: 100%;
+    }
+  }
+
+  .mermaid--error {
+    display: block;
+    border: 1px solid #d1242f;
+    border-radius: 6px;
+    padding: 8px 12px;
+
+    pre {
+      margin-bottom: 4px;
+    }
+
+    .mermaid--error-message {
+      color: #d1242f;
+      font-size: 0.85em;
+      margin: 0;
+      word-break: break-word;
+    }
+  }
+
+  // Custom :::name containers. Visual language follows GitHub alerts.
+  .directive {
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid #d0d7de;
+    background-color: #f6f8fa;
+    border-radius: 0 6px 6px 0;
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .directive--note {
+    border-left-color: #0969da;
+  }
+
+  .directive--tip {
+    border-left-color: #1a7f37;
+  }
+
+  .directive--important {
+    border-left-color: #8250df;
+  }
+
+  .directive--warning {
+    border-left-color: #9a6700;
+  }
+
+  .directive--caution {
+    border-left-color: #d1242f;
+  }
+
+  .directive-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  details.directive--details {
+    padding: 8px 16px;
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+
+  mark {
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+
+  .inline-toc {
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  .inline-toc__title {
+    font-weight: 600;
+    font-size: 0.85em;
+    color: #57606a;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 4px;
+  }
+
+  // Wide formulas must stay readable instead of overflowing the page.
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+  }
+
+  // Heading anchor links appear on hover, like on github.com.
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    .anchor {
+      margin-left: 6px;
+      text-decoration: none;
+      opacity: 0;
+      font-size: 0.8em;
+    }
+
+    &:hover .anchor {
+      opacity: 0.6;
+    }
+  }
+}

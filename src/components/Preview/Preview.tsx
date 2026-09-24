@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, memo } from 'react';
 import Markdown from 'react-markdown';
 import {
   remarkPlugins,
@@ -27,19 +27,23 @@ interface PreviewProps {
  *
  * @param props.source markdown text to render.
  */
-const Preview = forwardRef<HTMLDivElement, PreviewProps>(({ source }, ref) => (
-  <div ref={ref} className="preview markdown-body" dir="auto">
-    <Markdown
-      remarkPlugins={remarkPlugins}
-      rehypePlugins={rehypePlugins}
-      remarkRehypeOptions={remarkRehypeOptions}
-      components={markdownComponents}
-      urlTransform={markdownUrlTransform}
-    >
-      {source}
-    </Markdown>
-  </div>
-));
+// Memoized: re-rendering would rebuild the whole unified pipeline
+// (remark/rehype/KaTeX/highlight) even when only the cursor moved.
+const Preview = memo(
+  forwardRef<HTMLDivElement, PreviewProps>(({ source }, ref) => (
+    <div ref={ref} className="preview markdown-body" dir="auto">
+      <Markdown
+        remarkPlugins={remarkPlugins}
+        rehypePlugins={rehypePlugins}
+        remarkRehypeOptions={remarkRehypeOptions}
+        components={markdownComponents}
+        urlTransform={markdownUrlTransform}
+      >
+        {source}
+      </Markdown>
+    </div>
+  )),
+);
 
 Preview.displayName = 'Preview';
 

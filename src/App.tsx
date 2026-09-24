@@ -18,7 +18,10 @@ export default function App() {
   );
 
   const onCursorChange = useCallback(
-    (pos: CursorPosition) => setCursor(pos),
+    (pos: CursorPosition) =>
+      setCursor((prev) =>
+        prev.line === pos.line && prev.column === pos.column ? prev : pos,
+      ),
     [],
   );
 

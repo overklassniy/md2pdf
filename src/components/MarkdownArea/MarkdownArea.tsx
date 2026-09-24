@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import type { EditorView } from '@codemirror/view';
 import Editor, { type CursorPosition } from '../Editor/Editor';
 import { insertImageFile } from '../Editor/imagePaste';
@@ -17,11 +17,11 @@ interface MarkdownAreaProps {
 /**
  * Split view hosting the editor, the drag handle and the preview pane.
  * Wires file drop loading and proportional scroll sync.
+ *
+ * Memoized: cursor updates in App would otherwise re-render the whole
+ * subtree — including a full react-markdown pass — on every arrow key.
  */
-export default function MarkdownArea({
-  onCursorChange,
-  previewRef,
-}: MarkdownAreaProps) {
+function MarkdownArea({ onCursorChange, previewRef }: MarkdownAreaProps) {
   const { text, setText, scrollSync } = useApp();
   const [isDrag, setDrag] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -77,3 +77,5 @@ export default function MarkdownArea({
     </div>
   );
 }
+
+export default memo(MarkdownArea);

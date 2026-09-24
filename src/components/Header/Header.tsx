@@ -39,7 +39,11 @@ export default function Header({ getPreviewEl }: HeaderProps) {
 
   const onExportHtml = () => {
     const previewEl = getPreviewEl();
-    if (previewEl) exportHtml(previewEl, text);
+    if (previewEl) {
+      exportHtml(previewEl, text).catch((err) =>
+        console.error('HTML export failed', err),
+      );
+    }
   };
 
   const onReset = () => {

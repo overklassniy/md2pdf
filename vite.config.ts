@@ -9,6 +9,12 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'icons/*.png', 'static/og-img.jpg'],
+      workbox: {
+        // woff2 covers the KaTeX fonts: precaching them keeps math
+        // rendering offline and lets exportHtml() fetch them for data-URI
+        // embedding even without a network.
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+      },
       manifest: {
         name: 'md2pdf - Markdown to PDF',
         short_name: 'md2pdf',

@@ -59,6 +59,7 @@ export default function SettingsPanel({
             update({ margin: e.target.value as PageSettings['margin'] })
           }
         >
+          <option value="none">None</option>
           <option value="narrow">Narrow</option>
           <option value="normal">Normal</option>
           <option value="wide">Wide</option>

@@ -2,7 +2,17 @@
 // paged.js paginates in screen context and must see them too, and they are
 // harmless during normal screen rendering.
 
-pre,
+// Chrome strips element backgrounds when printing unless the author opts
+// out; keep code blocks, inline code, marks, alert borders and table
+// headers colored. The rule is unscoped so paged.js sees it as well.
+.markdown-body,
+.markdown-body * {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+// `pre` is intentionally absent: a code block taller than a page must be
+// allowed to fragment, otherwise it is clipped in the PDF output.
 table,
 img,
 blockquote,
@@ -55,6 +65,11 @@ h6 {
     display: none !important;
   }
 
+  // Long code lines would overflow the page horizontally; wrap them.
+  .markdown-body pre {
+    white-space: pre-wrap;
+  }
+
   #root,
   .app,
   .app__main {
@@ -69,13 +84,30 @@ h6 {
     }
 
     #print-root {
-      display: block;
+      position: static;
+      visibility: visible;
+    }
+
+    // paged.js forces `break-after: page` on every generated page box,
+    // including the last one, which makes Chrome emit a trailing blank
+    // sheet. The body.paged-ready scope gives this rule enough specificity
+    // to win over the styles paged.js injects into <head> during preview.
+    .pagedjs_page:last-of-type {
+      break-after: auto;
+      page-break-after: auto;
     }
   }
 }
 
 // The paged.js output lives outside the app root so it can replace the
-// whole screen content while printing.
+// whole screen content while printing. It must stay rendered on screen:
+// display:none gives every descendant a null offsetParent, which crashes
+// the paged.js layout engine. Absolute positioning plus hidden visibility
+// keeps the boxes measurable yet invisible.
 #print-root {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
 }

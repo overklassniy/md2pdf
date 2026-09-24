@@ -12,9 +12,18 @@ declare module 'pagedjs' {
     performance?: number;
   }
 
+  /** Processes stylesheets and injects base styles into document.head. */
+  export interface Polisher {
+    /** Removes every style element the polisher inserted into <head>. */
+    destroy(): void;
+  }
+
   /** Paginates HTML content into CSS Paged Media page boxes. */
   export class Previewer {
     constructor(options?: Record<string, unknown>);
+
+    /** The stylesheet polisher; assigned by the constructor. */
+    polisher: Polisher;
 
     /**
      * Flows content into paginated output inside renderTo.

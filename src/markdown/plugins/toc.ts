@@ -7,7 +7,10 @@ import type { Heading, List, ListItem, Paragraph, RootContent } from 'mdast';
 /** Maximum heading depth included in the generated table of contents. */
 const MAX_TOC_DEPTH = 3;
 
-const TOC_PATTERN = /^\[+\s*toc\s*\]+$/i;
+const TOC_PATTERN = /^\[+\s*toc(?:\s+"([^"]*)")?\s*\]+$/i;
+
+/** Title rendered above the generated list when none is specified. */
+const DEFAULT_TITLE = 'Contents';
 
 interface MutableParent extends Parent {
   children: RootContent[];
@@ -16,6 +19,9 @@ interface MutableParent extends Parent {
 /**
  * Remark plugin replacing a `[TOC]` paragraph with a linked table of
  * contents built from the document headings.
+ *
+ * An optional quoted title overrides the default "Contents" caption:
+ * `[TOC "My title"]`.
  *
  * The generated structure is a <nav class="inline-toc"> containing a title
  * and a nested list of anchor links. Slugs come from github-slugger, which
@@ -41,9 +47,14 @@ export function remarkInlineToc() {
       const paragraph = node as Paragraph;
       if (paragraph.children.length !== 1) return;
       const only = paragraph.children[0];
-      if (only.type !== 'text' || !TOC_PATTERN.test(only.value.trim())) return;
+      if (only.type !== 'text') return;
+      const match = TOC_PATTERN.exec(only.value.trim());
+      if (!match) return;
 
-      (parent as MutableParent).children[index] = buildTocNode(headings);
+      (parent as MutableParent).children[index] = buildTocNode(
+        headings,
+        match[1]?.trim() || DEFAULT_TITLE,
+      );
     });
   };
 }
@@ -52,10 +63,12 @@ export function remarkInlineToc() {
  * Builds the TOC container node from collected headings.
  *
  * @param headings flattened heading list in document order.
+ * @param title caption rendered above the list.
  * @returns a node rendered as <nav class="inline-toc">…</nav>.
  */
 function buildTocNode(
   headings: Array<{ depth: number; text: string; slug: string }>,
+  title: string,
 ): RootContent {
   const minDepth = Math.min(...headings.map((h) => h.depth));
 
@@ -101,15 +114,15 @@ function buildTocNode(
     stack[stack.length - 1].list.children.push(item);
   }
 
-  const title = {
+  const titleNode = {
     type: 'paragraph',
-    children: [{ type: 'text', value: 'Contents' }],
+    children: [{ type: 'text', value: title }],
     data: { hName: 'p', hProperties: { className: ['inline-toc__title'] } },
   } as unknown as RootContent;
 
   return {
     type: 'container',
-    children: [title, root as RootContent],
+    children: [titleNode, root as RootContent],
     data: { hName: 'nav', hProperties: { className: ['inline-toc'] } },
   } as unknown as RootContent;
 }

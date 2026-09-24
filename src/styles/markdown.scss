@@ -69,15 +69,6 @@
     margin-bottom: 4px;
   }
 
-  details.directive--details {
-    padding: 8px 16px;
-
-    summary {
-      cursor: pointer;
-      font-weight: 600;
-    }
-  }
-
   mark {
     border-radius: 2px;
     padding: 0 2px;
@@ -110,22 +101,29 @@
     padding-bottom: 2px;
   }
 
-  // Heading anchor links appear on hover, like on github.com.
+  // Heading anchor links appear on hover, like on github.com. The class is
+  // .heading-anchor — not .anchor — so github-markdown-css float/margin
+  // rules never indent the heading text.
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    .anchor {
+    .heading-anchor {
       margin-left: 6px;
       text-decoration: none;
       opacity: 0;
       font-size: 0.8em;
     }
 
-    &:hover .anchor {
+    &:hover .heading-anchor {
       opacity: 0.6;
     }
+  }
+
+  // Inline SVG backreference icon, aligned to the text baseline.
+  .data-footnote-backref .footnote-back-icon {
+    vertical-align: -0.15em;
   }
 }

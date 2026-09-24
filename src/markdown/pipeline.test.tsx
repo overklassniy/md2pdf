@@ -95,12 +95,6 @@ describe('markdown pipeline', () => {
     expect(el?.querySelector('.directive-title')).toHaveTextContent('Custom');
   });
 
-  it('maps :::details to a details/summary element', () => {
-    const { container } = renderMd(':::details[More]\nhidden\n:::');
-    expect(container.querySelector('details')).toBeInTheDocument();
-    expect(container.querySelector('summary')).toHaveTextContent('More');
-  });
-
   it('turns \\newpage into a page-break element', () => {
     const { container } = renderMd('before\n\n\\newpage\n\nafter');
     expect(container.querySelector('.page-break')).toBeInTheDocument();
@@ -112,6 +106,49 @@ describe('markdown pipeline', () => {
     expect(toc).toBeInTheDocument();
     expect(toc?.querySelector('a[href="#alpha"]')).toHaveTextContent('Alpha');
     expect(toc?.querySelector('a[href="#beta"]')).toHaveTextContent('Beta');
+    expect(toc?.querySelector('.inline-toc__title')).toHaveTextContent(
+      'Contents',
+    );
+  });
+
+  it('renders a custom TOC title from [TOC "Title"]', () => {
+    const { container } = renderMd('[TOC "My index"]\n\n## Alpha');
+    expect(
+      container.querySelector('.inline-toc__title'),
+    ).toHaveTextContent('My index');
+  });
+
+  it('renders GitHub-cased alert titles and quoted custom titles', () => {
+    const { container } = renderMd(
+      '> [!CAUTION]\n> risky\n\n> [!NOTE "Read me"]\n> body',
+    );
+    const alerts = container.querySelectorAll('.markdown-alert');
+    expect(alerts[0].querySelector('.markdown-alert-title')).toHaveTextContent(
+      'Caution',
+    );
+    expect(alerts[1].querySelector('.markdown-alert-title')).toHaveTextContent(
+      'Read me',
+    );
+  });
+
+  it('renders an svg footnote backref instead of the emoji glyph', () => {
+    const { container } = renderMd('note[^a]\n\n[^a]: body');
+    expect(
+      container.querySelector('.data-footnote-backref svg'),
+    ).toBeInTheDocument();
+    expect(container.querySelector('.footnotes')).not.toHaveTextContent('↩');
+  });
+
+  it('stamps data-source-line on block elements for scroll sync', () => {
+    const { container } = renderMd('# Title\n\npara\n\n## Sub');
+    expect(container.querySelector('h1')).toHaveAttribute(
+      'data-source-line',
+      '1',
+    );
+    expect(container.querySelector('h2')).toHaveAttribute(
+      'data-source-line',
+      '5',
+    );
   });
 
   it('strips front matter from the rendered output', () => {

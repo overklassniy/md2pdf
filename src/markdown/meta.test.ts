@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { extractFrontMatter, resolveDocumentTitle, toFileName } from './meta';
+import {
+  extractFrontMatter,
+  resolveDocumentTitle,
+  toFileName,
+} from './meta';
 
 describe('meta', () => {
   it('parses yaml front matter', () => {

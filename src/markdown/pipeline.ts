@@ -20,6 +20,8 @@ import { remarkDirectives } from './plugins/directives';
 import { remarkSubSup } from './plugins/subsup';
 import { remarkInlineToc } from './plugins/toc';
 import { remarkPagebreak } from './plugins/pagebreak';
+import { remarkAlertTitle } from './plugins/alertTitle';
+import { rehypeSourceLine } from './plugins/sourceline';
 
 /**
  * Remark (markdown → mdast) plugin chain.
@@ -30,13 +32,17 @@ import { remarkPagebreak } from './plugins/pagebreak';
  *   (~~strikethrough~~ is unaffected);
  * - directive parsing (remark-directive) must precede the node mapping done
  *   by remarkDirectives;
+ * - remarkAlertTitle rewrites alert markers to the legacy title form, so it
+ *   must run before remarkAlert, which is configured with legacyTitle to
+ *   accept the generated `[!TYPE/title]` markers;
  * - smartypants runs last because it rewrites remaining text nodes.
  */
 export const remarkPlugins: PluggableList = [
   [remarkFrontmatter, ['yaml']],
   [remarkGfm, { singleTilde: false }],
   remarkMath,
-  remarkAlert,
+  remarkAlertTitle,
+  [remarkAlert, { legacyTitle: true }],
   remarkDirective,
   remarkDirectives,
   remarkFlexibleMarkers,
@@ -65,7 +71,10 @@ export const rehypePlugins: PluggableList = [
     {
       behavior: 'append',
       properties: {
-        className: 'anchor',
+        // Not 'anchor': github-markdown-css floats .anchor left with a
+        // negative margin, which indents the heading. 'no-print' drops the
+        // link from printed output.
+        className: ['heading-anchor', 'no-print'],
         ariaLabel: 'Link to this heading',
       },
       content: {
@@ -77,12 +86,69 @@ export const rehypePlugins: PluggableList = [
     },
   ],
   [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+  rehypeSourceLine,
 ];
 
 /**
- * Extra mdast → hast handlers for node types the default converter does not
- * know — currently only definition lists.
+ * Content of the footnote backreference link.
+ *
+ * The default `↩` glyph renders as an emoji on some platforms; an inline SVG
+ * keeps the appearance consistent. Rereferenced definitions keep the GitHub
+ * superscript counter after the icon.
+ *
+ * @param _referenceIndex index of the footnote definition, 0-based.
+ * @param rereferenceIndex which call to the same definition this is, 1-based.
+ * @returns hast children for the backreference anchor.
+ */
+function footnoteBackContent(_referenceIndex: number, rereferenceIndex: number) {
+  const icon = {
+    type: 'element' as const,
+    tagName: 'svg',
+    properties: {
+      className: ['footnote-back-icon'],
+      viewBox: '0 0 16 16',
+      width: '14',
+      height: '14',
+      ariaHidden: 'true',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '1.8',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+    },
+    children: [
+      {
+        type: 'element' as const,
+        tagName: 'path',
+        properties: { d: 'M6.5 3.5 3 7l3.5 3.5' },
+        children: [],
+      },
+      {
+        type: 'element' as const,
+        tagName: 'path',
+        properties: { d: 'M3 7h7a3 3 0 0 1 3 3v2' },
+        children: [],
+      },
+    ],
+  };
+
+  if (rereferenceIndex <= 1) return [icon];
+
+  const counter = {
+    type: 'element' as const,
+    tagName: 'sup',
+    properties: {},
+    children: [{ type: 'text' as const, value: String(rereferenceIndex) }],
+  };
+
+  return [icon, counter];
+}
+
+/**
+ * Extra mdast → hast options: handlers for node types the default converter
+ * does not know (definition lists), and a custom footnote backref icon.
  */
 export const remarkRehypeOptions = {
   handlers: { ...defListHastHandlers },
+  footnoteBackContent,
 };

@@ -25,7 +25,7 @@ interface PreviewProps {
  * @param props.source markdown text to render.
  */
 const Preview = forwardRef<HTMLDivElement, PreviewProps>(({ source }, ref) => (
-  <div ref={ref} className="preview markdown-body">
+  <div ref={ref} className="preview markdown-body" dir="auto">
     <Markdown
       remarkPlugins={remarkPlugins}
       rehypePlugins={rehypePlugins}

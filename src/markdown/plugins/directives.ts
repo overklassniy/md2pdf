@@ -30,7 +30,6 @@ function isDirective(node: Node): node is DirectiveNode {
  * Supported directives:
  *   :::note|tip|important|warning|caution — callout block, optional custom
  *     title via the directive label (`:::note[Custom title]`).
- *   :::details[Label] — collapsible <details>/<summary> block.
  *   :::pagebreak or ::pagebreak — explicit PDF page break.
  *   Any other :::name — generic <div class="directive directive--name">.
  *
@@ -49,13 +48,6 @@ export function remarkDirectives() {
         return;
       }
 
-      if (name === 'details' && node.type === 'containerDirective') {
-        data.hName = 'details';
-        data.hProperties = { className: ['directive', 'directive--details'] };
-        promoteLabel(node, 'summary', 'directive-summary');
-        return;
-      }
-
       data.hName = 'div';
       data.hProperties = {
         className: ['directive', `directive--${name}`],
@@ -71,8 +63,7 @@ export function remarkDirectives() {
  * Converts the directive label child into a dedicated element.
  *
  * remark-directive marks the label as a paragraph child carrying
- * data.directiveLabel; re-tagging it makes it a <summary> (details) or a
- * titled paragraph (callouts).
+ * data.directiveLabel; re-tagging it makes it a titled paragraph (callouts).
  *
  * @param node directive whose label should be promoted.
  * @param hName hast tag name for the label element.

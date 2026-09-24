@@ -10,7 +10,7 @@ title: md2pdf feature tour
 
 Awesome **Markdown to PDF**, fully offline. This document is a live demo of the supported syntax — edit anything on the left and watch the preview update.
 
-[TOC]
+[TOC "In this document"]
 
 ## How to use
 
@@ -18,6 +18,8 @@ Awesome **Markdown to PDF**, fully offline. This document is a live demo of the 
 2. Edit in the editor on the left.
 3. Click **Export** to print to PDF or download HTML/Markdown.
 4. In the print dialog pick **Save as PDF**. Chrome is recommended.
+
+The YAML front matter above sets the document \`title\`, which becomes the PDF title and the downloaded file name.
 
 ## GitHub Flavored Markdown
 
@@ -42,6 +44,9 @@ Footnotes work too — like this one.[^1]
 
 > [!WARNING]
 > Critical content demanding immediate attention.
+
+> [!CAUTION "Careful here"]
+> A quoted string after the marker sets a custom alert title.
 
 ## Math (KaTeX)
 
@@ -76,10 +81,6 @@ A \`:::note\` container rendered as a callout block.
 
 :::tip[Custom title]
 Labels in square brackets set the callout title.
-:::
-
-:::details[Click to expand]
-Collapsible content produced by \`:::details\`.
 :::
 
 ## Raw HTML

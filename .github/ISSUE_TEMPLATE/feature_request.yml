@@ -1,0 +1,41 @@
+name: Feature Request
+description: Suggest a new capability or an improvement to an existing one
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the change you would like to see. Requests that explain the
+        underlying problem are easier to evaluate than requests for a
+        specific implementation.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: |
+        Describe the task or workflow that is currently difficult or
+        impossible. For example, a Markdown construct that does not render,
+        or an export option that is missing.
+      placeholder: I need footnotes to be numbered per page in the paged export.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: |
+        How you imagine the feature working: UI changes, new syntax,
+        configuration options, or export behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches or workarounds you have tried.
+    validations:
+      required: false

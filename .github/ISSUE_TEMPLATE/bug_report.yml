@@ -1,0 +1,78 @@
+name: Bug Report
+description: Report a defect in editing, preview, export, or offline behavior
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill in the sections below so the
+        issue can be reproduced.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug and what you expected instead.
+      placeholder: When I export with paged.js enabled, the last page is blank.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps, starting from opening the app.
+      placeholder: |
+        1. Open the app.
+        2. Paste the sample below into the editor.
+        3. Choose Print > Paged.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample Markdown
+      description: |
+        A minimal Markdown document that triggers the problem. Remove any
+        private content. Leave empty if not applicable.
+      render: markdown
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Which part of the app does the bug affect?
+      options:
+        - Editor
+        - Preview / rendering
+        - Print / PDF export
+        - HTML / Markdown download
+        - Offline / PWA behavior
+        - Page setup (size, orientation, margins)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      description: For example, Chrome 140 on Windows 11, or Safari on iOS 18.
+      placeholder: Chrome 140, Windows 11
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output
+      description: |
+        Open the browser developer console, reproduce the bug, and paste any
+        errors here. Leave empty if there is nothing relevant.
+      render: text
+    validations:
+      required: false

@@ -1,12 +1,17 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Build and test output
 dist/
 dev-dist/
 coverage/
-*.log
-.DS_Store
 
-# Local env files and overrides
-*.local
-.env
-.env.*
-!.env.example
+# Logs
+*.log
+
+# Tooling caches
+.fossil/
+
+# OS files
+.DS_Store
+Thumbs.db

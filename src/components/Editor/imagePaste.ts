@@ -5,16 +5,26 @@ import type { Extension } from '@codemirror/state';
  * Reads an image file and inserts it into the document as a base64 data URI
  * markdown image. Data URIs keep the exported PDF and HTML self-contained.
  *
+ * Shared by the CodeMirror paste/drop extension and the app-level drop
+ * handling in `useDrop`, which forwards image drops landing anywhere on
+ * the split view.
+ *
  * @param view editor view to dispatch the insertion into.
  * @param file image file from clipboard or drag event.
  * @param at explicit document position; defaults to the cursor.
  */
-function insertImage(view: EditorView, file: File, at?: number): void {
+export function insertImageFile(
+  view: EditorView,
+  file: File,
+  at?: number,
+): void {
   const reader = new FileReader();
   reader.onload = () => {
     const dataUrl = String(reader.result ?? '');
     if (!dataUrl) return;
-    const snippet = `![${file.name || 'image'}](${dataUrl})`;
+    // Brackets would break out of the alt text and corrupt the snippet.
+    const alt = (file.name || 'image').replace(/[[\]]/g, '');
+    const snippet = `![${alt}](${dataUrl})`;
     if (at === undefined) {
       view.dispatch(view.state.replaceSelection(snippet));
     } else {
@@ -44,7 +54,7 @@ export function imagePaste(): Extension {
       const file = firstImage(event.clipboardData?.files);
       if (!file) return false;
       event.preventDefault();
-      insertImage(view, file);
+      insertImageFile(view, file);
       return true;
     },
     drop(event, view) {
@@ -55,7 +65,7 @@ export function imagePaste(): Extension {
         x: event.clientX,
         y: event.clientY,
       });
-      insertImage(view, file, pos ?? undefined);
+      insertImageFile(view, file, pos ?? undefined);
       return true;
     },
   });

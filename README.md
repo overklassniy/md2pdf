@@ -65,19 +65,20 @@ docker compose up --build
 
 ## Markdown support
 
-| Feature                    | Syntax                                              |
-| -------------------------- | --------------------------------------------------- |
-| GFM                        | tables, task lists, strikethrough, footnotes        |
-| Math                       | `$inline$` and `$$block$$` via KaTeX                |
-| Diagrams                   | ` ```mermaid ` code blocks                          |
-| Alerts                     | `> [!NOTE]` with optional custom titles             |
-| Callouts                   | `:::note`, `:::tip`, `:::important`, `:::warning`, `:::caution` with `[Label]` |
-| Table of contents          | `[TOC]` or `[TOC "Title"]` on its own line          |
-| Page break                 | `\newpage`, `\pagebreak`, or `:::pagebreak`         |
-| Subscript / superscript    | `~sub~` and `^sup^`                                 |
-| Definition lists           | `Term : definition`                                 |
-| YAML front matter          | `title`, `author`, `date`, `lang`, and more         |
-| Extras                     | gemoji, smartypants, inline HTML, heading anchors   |
+| Feature                 | Syntax                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| GFM                     | tables, task lists, strikethrough, footnotes                                   |
+| Math                    | `$inline$` and `$$block$$` via KaTeX                                           |
+| Diagrams                | ` ```mermaid ` code blocks                                                     |
+| Alerts                  | `> [!NOTE]` with optional custom titles                                        |
+| Callouts                | `:::note`, `:::tip`, `:::important`, `:::warning`, `:::caution` with `[Label]` |
+| Table of contents       | `[TOC]` or `[TOC "Title"]` on its own line                                     |
+| Images                  | `![alt](src)`; paste/drop embeds base64 data URIs                              |
+| Page break              | `\newpage`, `\pagebreak`, or `:::pagebreak`                                    |
+| Subscript / superscript | `~sub~` and `^sup^`                                                            |
+| Definition lists        | `Term : definition`                                                            |
+| YAML front matter       | `title`, `author`, `date`, `lang`, and more                                    |
+| Extras                  | gemoji, smartypants, inline HTML, heading anchors                              |
 
 ## Exporting
 
@@ -100,14 +101,14 @@ Mermaid, paged.js, vite-plugin-pwa (Workbox).
 
 ## Development
 
-| Command           | Purpose                  |
-| ----------------- | ------------------------ |
-| `pnpm dev`        | start the dev server     |
-| `pnpm build`      | production build         |
-| `pnpm test`       | run Vitest               |
-| `pnpm lint`       | ESLint                   |
-| `pnpm typecheck`  | `tsc --noEmit`           |
-| `pnpm format`     | Prettier                 |
+| Command          | Purpose              |
+| ---------------- | -------------------- |
+| `pnpm dev`       | start the dev server |
+| `pnpm build`     | production build     |
+| `pnpm test`      | run Vitest           |
+| `pnpm lint`      | ESLint               |
+| `pnpm typecheck` | `tsc --noEmit`       |
+| `pnpm format`    | Prettier             |
 
 ---
 

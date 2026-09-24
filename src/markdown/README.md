@@ -5,7 +5,7 @@ The unified (remark/rehype) rendering pipeline.
 ## Contents
 
 - `pipeline.ts` — ordered remark and rehype plugin arrays plus `remarkRehypeOptions` (definition-list handlers, SVG footnote backref icon). Single source of truth for the markdown dialect.
-- `components.tsx` — react-markdown element overrides; intercepts ` ```mermaid ` blocks at the `pre` level.
+- `components.tsx` — react-markdown element overrides; intercepts ` ```mermaid ` blocks at the `pre` level. Also exports `markdownUrlTransform`, which allowlists `data:image/` URIs for `img.src` so pasted/dropped base64 images render while other unsafe URLs stay sanitized.
 - `meta.ts` — YAML front matter parsing, document title resolution (front matter `title` → first H1 → `document`) and file-name sanitizing. `title` is the only metadata field Chromium's print-to-PDF writes into the PDF.
 - `plugins/` — local remark/rehype plugins: sub/superscript, directive mapping, alert titles, inline TOC, page breaks, source-line markers.
 - `pipeline.test.tsx`, `meta.test.ts` — feature-level tests.

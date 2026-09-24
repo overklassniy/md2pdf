@@ -5,7 +5,10 @@ import {
   rehypePlugins,
   remarkRehypeOptions,
 } from '../../markdown/pipeline';
-import { markdownComponents } from '../../markdown/components';
+import {
+  markdownComponents,
+  markdownUrlTransform,
+} from '../../markdown/components';
 import 'github-markdown-css/github-markdown-light.css';
 import 'remark-github-blockquote-alert/alert.css';
 import 'highlight.js/styles/github.css';
@@ -31,6 +34,7 @@ const Preview = forwardRef<HTMLDivElement, PreviewProps>(({ source }, ref) => (
       rehypePlugins={rehypePlugins}
       remarkRehypeOptions={remarkRehypeOptions}
       components={markdownComponents}
+      urlTransform={markdownUrlTransform}
     >
       {source}
     </Markdown>

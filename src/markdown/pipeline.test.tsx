@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import Markdown from 'react-markdown';
 import { remarkPlugins, rehypePlugins, remarkRehypeOptions } from './pipeline';
-import { markdownComponents } from './components';
+import { markdownComponents, markdownUrlTransform } from './components';
 
 vi.mock('mermaid', () => ({
   default: {
@@ -18,6 +18,7 @@ function renderMd(source: string) {
       rehypePlugins={rehypePlugins}
       remarkRehypeOptions={remarkRehypeOptions}
       components={markdownComponents}
+      urlTransform={markdownUrlTransform}
     >
       {source}
     </Markdown>,
@@ -113,9 +114,9 @@ describe('markdown pipeline', () => {
 
   it('renders a custom TOC title from [TOC "Title"]', () => {
     const { container } = renderMd('[TOC "My index"]\n\n## Alpha');
-    expect(
-      container.querySelector('.inline-toc__title'),
-    ).toHaveTextContent('My index');
+    expect(container.querySelector('.inline-toc__title')).toHaveTextContent(
+      'My index',
+    );
   });
 
   it('renders GitHub-cased alert titles and quoted custom titles', () => {
@@ -175,6 +176,34 @@ describe('markdown pipeline', () => {
     expect(
       await screen.findByText('', { selector: '.mermaid' }),
     ).toBeInTheDocument();
+  });
+
+  it('keeps data:image URIs in img src', () => {
+    const { container } = renderMd('![pic](data:image/png;base64,AAAA)');
+    expect(container.querySelector('img')).toHaveAttribute(
+      'src',
+      'data:image/png;base64,AAAA',
+    );
+  });
+
+  it('keeps data:image URIs in raw <img> src', () => {
+    const { container } = renderMd(
+      '<img src="data:image/png;base64,AAAA" alt="pic" />',
+    );
+    expect(container.querySelector('img')).toHaveAttribute(
+      'src',
+      'data:image/png;base64,AAAA',
+    );
+  });
+
+  it('still strips unsafe image and link URLs', () => {
+    const { container } = renderMd(
+      '![a](javascript:alert)\n\n![b](data:text/html;base64,AAAA)\n\n[x](data:text/html;base64,AAAA)',
+    );
+    const images = container.querySelectorAll('img');
+    expect(images[0].getAttribute('src')).toBeFalsy();
+    expect(images[1].getAttribute('src')).toBeFalsy();
+    expect(container.querySelector('a')?.getAttribute('href')).toBeFalsy();
   });
 
   it('highlights fenced code with hljs classes', () => {

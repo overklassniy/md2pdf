@@ -89,6 +89,16 @@ You can still use <span style="color:#0984e3">inline HTML</span> when you need i
 
 <blockquote>Hey, I'm in a blockquote!</blockquote>
 
+## Images
+
+Paste an image from the clipboard (Ctrl+V) or drop an image file anywhere — it is embedded as a base64 data URI, so the exported PDF and HTML stay self-contained and work offline. The usual \`![alt](src)\` syntax works too, and inline \`<img>\` lets you set a size:
+
+![md2pdf badge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiI+PHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTYiIGZpbGw9IiNkMTI0MmYiLz48dGV4dCB4PSI0OCIgeT0iNjAiIGZvbnQtc2l6ZT0iMzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5tZDwvdGV4dD48L3N2Zz4=)
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiI+PHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTYiIGZpbGw9IiNkMTI0MmYiLz48dGV4dCB4PSI0OCIgeT0iNjAiIGZvbnQtc2l6ZT0iMzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5tZDwvdGV4dD48L3N2Zz4=" width="48" alt="md2pdf badge" />
+
+Remote URLs (\`![alt](https://…)\`) render as well, but need a network connection — the app itself runs fully offline.
+
 ## Page breaks
 
 The paragraph after this section starts on a fresh PDF page.

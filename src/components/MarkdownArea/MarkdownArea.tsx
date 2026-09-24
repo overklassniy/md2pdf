@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import type { EditorView } from '@codemirror/view';
 import Editor, { type CursorPosition } from '../Editor/Editor';
+import { insertImageFile } from '../Editor/imagePaste';
 import DragBar from '../Editor/DragBar';
 import PreviewArea from '../Preview/PreviewArea';
 import { useApp } from '../../state/context';
@@ -29,7 +30,17 @@ export default function MarkdownArea({
   const areaRef = useRef<HTMLDivElement>(null);
 
   const onText = useCallback((content: string) => setText(content), [setText]);
-  const [isOver] = useDrop(areaRef, { onText });
+  // Image drops land wherever the mouse is; posAtCoords resolves to null
+  // outside the editor, in which case the image goes to the cursor.
+  const onImage = useCallback(
+    (file: File, e: DragEvent) => {
+      if (!editorView) return;
+      const pos = editorView.posAtCoords({ x: e.clientX, y: e.clientY });
+      insertImageFile(editorView, file, pos ?? undefined);
+    },
+    [editorView],
+  );
+  const [isOver] = useDrop(areaRef, { onText, onImage });
 
   useScrollSync(editorView, previewRef, scrollSync);
 

@@ -1,5 +1,9 @@
 import { isValidElement, type ReactNode } from 'react';
-import type { Components } from 'react-markdown';
+import {
+  defaultUrlTransform,
+  type Components,
+  type UrlTransform,
+} from 'react-markdown';
 import MermaidBlock from '../components/Preview/MermaidBlock';
 
 const MERMAID_CLASS = 'language-mermaid';
@@ -38,4 +42,24 @@ export const markdownComponents: Components = {
     }
     return <pre {...props}>{children}</pre>;
   },
+};
+
+/**
+ * URL sanitizer for rendered markdown.
+ *
+ * The default transform strips `data:` URLs to an empty string, which
+ * breaks the base64 images that paste/drop embedding produces. Only
+ * `img.src` gets the `data:image/` exception — scripts cannot execute
+ * through an image element, while `href`, `srcSet` and non-image `data:`
+ * payloads (e.g. `data:text/html`) stay sanitized.
+ */
+export const markdownUrlTransform: UrlTransform = (url, key, node) => {
+  if (
+    key === 'src' &&
+    node.tagName === 'img' &&
+    url.startsWith('data:image/')
+  ) {
+    return url;
+  }
+  return defaultUrlTransform(url);
 };

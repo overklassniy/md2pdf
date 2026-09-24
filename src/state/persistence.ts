@@ -5,6 +5,7 @@ const STORAGE_KEY = 'md2pdf:v1';
 interface PersistedState {
   text?: string;
   settings?: Partial<PageSettings>;
+  scrollSync?: boolean;
 }
 
 /**
@@ -31,7 +32,7 @@ export function loadPersistedState(): PersistedState {
  * Quota and privacy-mode failures are swallowed: persistence is a
  * convenience, not a correctness requirement.
  *
- * @param state text and page settings to persist.
+ * @param state text, page settings and UI toggles to persist.
  */
 export function persistState(state: Required<PersistedState>): void {
   try {

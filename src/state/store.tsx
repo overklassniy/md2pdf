@@ -23,23 +23,22 @@ const PERSIST_DEBOUNCE_MS = 300;
  * @param props.children subtree that can access the store.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [text, setText] = useState<string>(
-    () => loadPersistedState().text ?? SAMPLE_DOCUMENT,
-  );
-  const [settings, setSettings] = useState<PageSettings>(() => ({
+  const [persisted] = useState(loadPersistedState);
+  const [text, setText] = useState<string>(persisted.text ?? SAMPLE_DOCUMENT);
+  const [settings, setSettings] = useState<PageSettings>({
     ...DEFAULT_PAGE_SETTINGS,
-    ...loadPersistedState().settings,
-  }));
-  const [scrollSync, setScrollSync] = useState(true);
+    ...persisted.settings,
+  });
+  const [scrollSync, setScrollSync] = useState(persisted.scrollSync ?? true);
   const persistTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     window.clearTimeout(persistTimer.current);
     persistTimer.current = window.setTimeout(() => {
-      persistState({ text, settings });
+      persistState({ text, settings, scrollSync });
     }, PERSIST_DEBOUNCE_MS);
     return () => window.clearTimeout(persistTimer.current);
-  }, [text, settings]);
+  }, [text, settings, scrollSync]);
 
   const resetDocument = useCallback(() => setText(SAMPLE_DOCUMENT), []);
 

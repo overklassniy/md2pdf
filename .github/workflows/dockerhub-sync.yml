@@ -1,0 +1,45 @@
+# Docker Hub description sync: pushes DOCKERHUB.md to the Docker Hub
+# repository overview (the "Overview" tab) and sets the short description.
+#
+# Uses peter-evans/dockerhub-description@v5.0.0, which calls the Docker
+# Hub API directly with the DOCKERHUB_TOKEN. No GitHub token permissions
+# are needed beyond the default read-only checkout.
+#
+# Required secrets:
+#   DOCKERHUB_USERNAME - Docker Hub account name.
+#   DOCKERHUB_TOKEN    - Docker Hub access token with read/write/delete
+#                       scope (the image-push token works if it has those
+#                       scopes; otherwise create a dedicated token).
+# Optional repository variable:
+#   DOCKERHUB_IMAGE    - Docker Hub image name (default overklassniy/md2pdf).
+name: dockerhub-sync
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - DOCKERHUB.md
+      - .github/workflows/dockerhub-sync.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Sync overview to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update Docker Hub description
+        uses: peter-evans/dockerhub-description@v5.0.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ vars.DOCKERHUB_IMAGE || 'overklassniy/md2pdf' }}
+          readme-filepath: ./DOCKERHUB.md
+          short-description: "Offline Markdown to PDF: edit, preview and print to PDF in the browser."
+          enable-url-completion: true

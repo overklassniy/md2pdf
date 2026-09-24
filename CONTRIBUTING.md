@@ -66,6 +66,8 @@ Three GitHub Actions workflows live in `.github/workflows/`:
 - **release** — on `v*` tags: re-runs lint/typecheck/test, then publishes
   `:version`, `:major`, `:major.minor`, and `:latest` tags to GHCR and
   Docker Hub. No GitHub Release object is created; the tag is the release.
+- **dockerhub-sync** — on changes to `DOCKERHUB.md`: pushes it to the
+  Docker Hub repository overview and sets the short description.
 
 To cut a release:
 

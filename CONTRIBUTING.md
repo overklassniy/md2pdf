@@ -55,6 +55,45 @@ pnpm dev
 - **Reuse first.** Before adding a new utility or component, search `src/` for
   an existing implementation and extend it instead of duplicating.
 
+## CI and releases
+
+Three GitHub Actions workflows live in `.github/workflows/`:
+
+- **ci** — on every push to `master` and every pull request: `pnpm lint`,
+  `pnpm typecheck`, `pnpm test`, `pnpm build`, plus a Docker build smoke test.
+- **dev-image** — on pushes to `master` that affect image contents: publishes
+  `:dev` and `:latest` tags to GHCR and Docker Hub.
+- **release** — on `v*` tags: re-runs lint/typecheck/test, then publishes
+  `:version`, `:major`, `:major.minor`, and `:latest` tags to GHCR and
+  Docker Hub. No GitHub Release object is created; the tag is the release.
+
+To cut a release:
+
+```bash
+git tag v1.2.3
+git push origin v1.2.3
+```
+
+The runtime image is a scratch container with a single static web server
+(`ghcr.io/static-web-server/static-web-server`) — no shell or package
+manager, about 5 MB plus the app bundle. There is intentionally no
+`HEALTHCHECK` in the image; check health from outside (`curl` the
+container, compose `healthcheck`, or your orchestrator). If an in-image
+healthcheck or a debug shell is needed, switch the Dockerfile base to the
+`:2-alpine` tag (~3 MB larger).
+
+Required repository secrets for Docker Hub publishing (GHCR uses the
+automatic `GITHUB_TOKEN`):
+
+| Secret              | Purpose                                   |
+| ------------------- | ----------------------------------------- |
+| `DOCKERHUB_USERNAME` | Docker Hub account name                  |
+| `DOCKERHUB_TOKEN`    | Docker Hub access token with write scope |
+
+Optional repository variable: `DOCKERHUB_IMAGE` — overrides the Docker Hub
+image name (default `overklassniy/md2pdf`). Without the secrets, pushes to
+Docker Hub are skipped and GHCR still works.
+
 ## Reporting bugs and requesting features
 
 Use the issue templates on GitHub. A good bug report includes the Markdown

@@ -3,5 +3,16 @@ dist
 dev-dist
 coverage
 .git
+.github
 .devin
+.fossil
+assets
 *.log
+*.md
+.gitignore
+.prettierignore
+.prettierrc
+eslint.config.js
+Dockerfile
+.dockerignore
+docker-compose.yaml

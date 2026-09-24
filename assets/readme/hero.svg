@@ -1,0 +1,237 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="380"
+  viewBox="0 0 1200 380"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">md2pdf</title>
+  <desc id="desc">
+    md2pdf — an offline Markdown to PDF workspace. A Markdown editor pane on the
+    left converts into a paginated PDF document on the right.
+  </desc>
+
+  <defs>
+    <clipPath id="page-clip">
+      <rect x="0" y="0" width="204" height="236" rx="12" />
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="380" rx="26" fill="#1b1b1f" />
+
+  <g id="title-block" transform="translate(64 0)">
+    <text
+      x="2"
+      y="100"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      font-size="18"
+      letter-spacing="4"
+      fill="#d1242f"
+    >OFFLINE MARKDOWN-TO-PDF WORKSPACE</text>
+    <text
+      x="0"
+      y="164"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="76"
+      font-weight="800"
+      letter-spacing="-2"
+      fill="#f6f4ee"
+    >md2pdf</text>
+    <rect x="3" y="182" width="172" height="5" rx="2.5" fill="#d1242f" />
+    <text
+      x="2"
+      y="224"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="24"
+      fill="#a9aeb6"
+    >Edit Markdown, preview the printed page,</text>
+    <text
+      x="2"
+      y="256"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="24"
+      fill="#a9aeb6"
+    >export to PDF — entirely in the browser.</text>
+    <text
+      x="2"
+      y="322"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      font-size="17"
+      fill="#6e747d"
+    >NO SERVER · GFM · KATEX · MERMAID · PAGED.JS</text>
+  </g>
+
+  <g id="proof" transform="translate(688 60)">
+    <g id="editor-card">
+      <rect
+        width="200"
+        height="236"
+        rx="12"
+        fill="#232529"
+        stroke="#3a3d44"
+      />
+      <circle cx="20" cy="20" r="4" fill="#d1242f" />
+      <circle cx="34" cy="20" r="4" fill="#6e747d" />
+      <circle cx="48" cy="20" r="4" fill="#3a3d44" />
+      <text
+        x="184"
+        y="24"
+        text-anchor="end"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="14"
+        fill="#8a8f98"
+      >doc.md</text>
+      <line x1="0" y1="38" x2="200" y2="38" stroke="#3a3d44" />
+      <text
+        x="16"
+        y="64"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+      ><tspan fill="#d1242f"># </tspan><tspan fill="#e8e4dc">Report</tspan></text>
+      <text
+        x="16"
+        y="90"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+        fill="#c9cdd4"
+      >Runs **offline**</text>
+      <text
+        x="16"
+        y="116"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+        fill="#c9cdd4"
+      >$$ E = mc^2 $$</text>
+      <text
+        x="16"
+        y="142"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+        fill="#c9cdd4"
+      >```mermaid</text>
+      <rect x="16" y="162" width="9" height="18" fill="#d1242f">
+        <animate
+          attributeName="opacity"
+          values="1;0"
+          dur="1s"
+          repeatCount="indefinite"
+          calcMode="discrete"
+        />
+      </rect>
+    </g>
+
+    <g transform="translate(222 118)">
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0 0; 6 0; 0 0"
+          keyTimes="0; 0.5; 1"
+          dur="1.8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="1; 0.35; 1"
+          keyTimes="0; 0.5; 1"
+          dur="1.8s"
+          repeatCount="indefinite"
+        />
+        <path
+          d="M-8 -13 L5 0 L-8 13"
+          fill="none"
+          stroke="#d1242f"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </g>
+
+    <g id="page-card" transform="translate(244 0)">
+      <rect
+        width="204"
+        height="236"
+        rx="12"
+        fill="#f6f4ee"
+        stroke="#d8d4ca"
+      />
+      <rect x="16" y="18" width="96" height="10" rx="2" fill="#1b1b1f" />
+      <rect x="16" y="36" width="60" height="3" rx="1.5" fill="#d1242f" />
+      <rect x="16" y="54" width="170" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+      <rect x="16" y="66" width="150" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+      <rect x="16" y="78" width="120" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+
+      <g id="mini-diagram" transform="translate(0 0)">
+        <line x1="64" y1="115" x2="80" y2="115" stroke="#57606a" stroke-width="2" />
+        <line x1="126" y1="115" x2="142" y2="115" stroke="#57606a" stroke-width="2" />
+        <path d="M80 115 l-6 -3 v6 z" fill="#57606a" transform="translate(6 0)" />
+        <path d="M142 115 l-6 -3 v6 z" fill="#57606a" transform="translate(6 0)" />
+        <rect x="20" y="104" width="44" height="22" rx="5" fill="#f6f4ee" stroke="#1b1b1f" stroke-width="2" />
+        <rect x="82" y="104" width="44" height="22" rx="5" fill="#1b1b1f" />
+        <rect x="144" y="104" width="44" height="22" rx="5" fill="#f6f4ee" stroke="#1b1b1f" stroke-width="2" />
+      </g>
+
+      <rect x="16" y="148" width="160" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+      <rect x="16" y="160" width="140" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+      <rect x="16" y="172" width="100" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />
+
+      <text
+        x="188"
+        y="220"
+        text-anchor="end"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="13"
+        fill="#57606a"
+      >1 / 1</text>
+
+      <g clip-path="url(#page-clip)">
+        <rect x="0" y="0" width="204" height="34" fill="#d1242f">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 -40; 0 240; 0 240"
+            keyTimes="0; 0.65; 1"
+            dur="4.5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="opacity"
+            values="0; 0.13; 0.13; 0; 0"
+            keyTimes="0; 0.08; 0.58; 0.68; 1"
+            dur="4.5s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </g>
+    </g>
+
+    <g transform="translate(224 286)">
+      <text
+        x="0"
+        y="0"
+        text-anchor="end"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+        fill="#6e747d"
+        transform="translate(-14 0)"
+      >doc.md</text>
+      <path
+        d="M0 -5 L34 -5 M28 -10 L34 -5 L28 0"
+        fill="none"
+        stroke="#d1242f"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <text
+        x="48"
+        y="0"
+        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="16"
+        fill="#6e747d"
+      >document.pdf</text>
+    </g>
+  </g>
+</svg>

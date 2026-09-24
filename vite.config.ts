@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'icons/*.png', 'static/og-img.jpg'],
+      includeAssets: ['favicon.svg', 'static/og-img.png'],
       workbox: {
         // woff2 covers the KaTeX fonts: precaching them keeps math
         // rendering offline and lets exportHtml() fetch them for data-URI
@@ -26,14 +26,10 @@ export default defineConfig({
         start_url: '.',
         icons: [
           {
-            src: 'icons/android-icon-144x144.png',
-            sizes: '144x144',
-            type: 'image/png',
-          },
-          {
-            src: 'icons/android-icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
+            src: 'favicon.svg',
+            sizes: 'any',
+            type: 'image/svg+xml',
+            purpose: 'any',
           },
         ],
       },

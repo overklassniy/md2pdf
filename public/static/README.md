@@ -1,12 +1,8 @@
 # public/static/
 
-Miscellaneous static assets served verbatim.
+Static files served at the site root.
 
 ## Contents
 
-- `og-img.jpg` — Open Graph preview image.
-
-## Notes
-
-Referenced by the `og:image` meta tag in `index.html` (`./static/og-img.jpg`)
-and shipped via `includeAssets` in `vite.config.ts`.
+- `og-img.png` — Open Graph preview image referenced by `index.html`
+  (`og:image` meta). Rasterized from `assets/readme/og-image.svg`.

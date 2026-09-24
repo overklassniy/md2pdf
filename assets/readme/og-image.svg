@@ -1,0 +1,108 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">md2pdf — offline Markdown to PDF</title>
+  <desc id="desc">
+    md2pdf wordmark on a paper background with a stylized printed page.
+  </desc>
+
+  <rect width="1200" height="630" fill="#f6f4ee" />
+  <rect
+    x="14"
+    y="14"
+    width="1172"
+    height="602"
+    rx="20"
+    fill="none"
+    stroke="#1b1b1f"
+    stroke-opacity="0.14"
+    stroke-width="2"
+  />
+
+  <g id="page" transform="translate(830 130) rotate(4 140 190)">
+    <rect
+      x="14"
+      y="14"
+      width="280"
+      height="370"
+      rx="16"
+      fill="#e8e4dc"
+    />
+    <rect
+      width="280"
+      height="370"
+      rx="16"
+      fill="#ffffff"
+      stroke="#d8d4ca"
+      stroke-width="2"
+    />
+    <rect x="28" y="34" width="130" height="14" rx="3" fill="#1b1b1f" />
+    <rect x="28" y="58" width="80" height="5" rx="2.5" fill="#d1242f" />
+    <rect x="28" y="86" width="224" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <rect x="28" y="102" width="198" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <rect x="28" y="118" width="158" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <rect x="28" y="152" width="56" height="28" rx="7" fill="#ffffff" stroke="#1b1b1f" stroke-width="2.5" />
+    <rect x="112" y="152" width="56" height="28" rx="7" fill="#1b1b1f" />
+    <rect x="196" y="152" width="56" height="28" rx="7" fill="#ffffff" stroke="#1b1b1f" stroke-width="2.5" />
+    <line x1="84" y1="166" x2="112" y2="166" stroke="#57606a" stroke-width="2.5" />
+    <line x1="168" y1="166" x2="196" y2="166" stroke="#57606a" stroke-width="2.5" />
+    <rect x="28" y="206" width="212" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <rect x="28" y="222" width="186" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <rect x="28" y="238" width="132" height="8" rx="4" fill="#1b1b1f" opacity="0.2" />
+    <text
+      x="252"
+      y="346"
+      text-anchor="end"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      font-size="16"
+      fill="#57606a"
+    >1 / 1</text>
+  </g>
+
+  <g id="wordmark" transform="translate(110 0)">
+    <text
+      x="0"
+      y="212"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      font-size="24"
+      letter-spacing="5"
+      fill="#d1242f"
+    >OFFLINE MARKDOWN-TO-PDF</text>
+    <text
+      x="-4"
+      y="330"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="118"
+      font-weight="800"
+      letter-spacing="-4"
+      fill="#1b1b1f"
+    >md2pdf</text>
+    <rect x="2" y="356" width="272" height="8" rx="4" fill="#d1242f" />
+    <text
+      x="0"
+      y="424"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="34"
+      fill="#4a4f57"
+    >Edit, preview and print Markdown to PDF —</text>
+    <text
+      x="0"
+      y="468"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="34"
+      fill="#4a4f57"
+    >entirely in your browser.</text>
+    <text
+      x="0"
+      y="540"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      font-size="22"
+      fill="#6e747d"
+    >NO SERVER · GFM · KATEX · MERMAID · PAGED.JS</text>
+  </g>
+</svg>

@@ -6,9 +6,9 @@ Top application bar.
 
 - `Header.tsx` — layout and wiring: upload, scroll-sync toggle, reset, settings, export.
 - `UploadButton.tsx` — `.md` file picker.
-- `ExportMenu.tsx` — dropdown with Print/PDF, .md and .html downloads.
+- `ExportMenu.tsx` — direct Print / Save as PDF button plus a Download dropdown (.md, .html).
 - `SettingsPanel.tsx` — page setup dropdown (format, orientation, margins, paged.js options).
-- `Dropdown.tsx` — shared dropdown primitive (outside-click and Escape close).
+- `Dropdown.tsx` — shared dropdown primitive; panel is portaled to `document.body` (the header's `overflow: auto` would clip it) and closes on outside click, Escape, scroll or resize.
 - `Header.module.scss`, `Dropdown.module.scss` — scoped styles.
 
 ## Dependencies

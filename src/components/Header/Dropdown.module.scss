@@ -1,25 +1,16 @@
 .dropdown {
   position: relative;
-  display: inline-block;
-}
-
-.trigger {
-  height: 100%;
-  border-radius: 3px;
-  border: 1px solid black;
-  padding: 0 10px;
-  cursor: pointer;
-  background: transparent;
-  font: inherit;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
+// Rendered via createPortal at document.body: fixed coordinates come from
+// the trigger's bounding rect, so the panel escapes the header's
+// overflow: auto clipping.
 .panel {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 4px);
-  z-index: 10;
+  position: fixed;
+  z-index: 1000;
   min-width: 220px;
   background: #ffffff;
   border: 1px solid #d0d7de;

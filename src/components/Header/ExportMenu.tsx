@@ -8,7 +8,8 @@ interface ExportMenuProps {
 }
 
 /**
- * Export actions dropdown: print-to-PDF plus raw file downloads.
+ * Export actions: a direct print-to-PDF button plus a dropdown with raw
+ * file downloads.
  */
 export default function ExportMenu({
   onPrint,
@@ -16,16 +17,18 @@ export default function ExportMenu({
   onExportHtml,
 }: ExportMenuProps) {
   return (
-    <Dropdown label="Export">
-      <button type="button" className={styles.item} onClick={onPrint}>
+    <>
+      <button type="button" className={styles.button} onClick={onPrint}>
         Print / Save as PDF
       </button>
-      <button type="button" className={styles.item} onClick={onExportMd}>
-        Download .md
-      </button>
-      <button type="button" className={styles.item} onClick={onExportHtml}>
-        Download .html
-      </button>
-    </Dropdown>
+      <Dropdown label="Download">
+        <button type="button" className={styles.item} onClick={onExportMd}>
+          Download .md
+        </button>
+        <button type="button" className={styles.item} onClick={onExportHtml}>
+          Download .html
+        </button>
+      </Dropdown>
+    </>
   );
 }

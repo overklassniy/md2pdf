@@ -4,7 +4,7 @@ Reusable React hooks.
 
 ## Contents
 
-- `useScrollSync.ts` — proportional scroll sync between the CodeMirror scroller and the preview pane, with a reentrancy lock; toggleable from the header.
+- `useScrollSync.ts` — line-based scroll sync between the CodeMirror scroller and the preview pane using `data-source-line` markers with interpolation between anchors (proportional fallback); a driver lock prevents feedback loops; toggleable from the header.
 - `useDrop.ts` — drag-and-drop loading of text files (`.md`, `.markdown`, `.mdown`, `.mkd`, `.txt`) onto a container; other payloads are left for the editor's own drop handling.
 
 ## Notes

@@ -6,6 +6,29 @@
   />
 </p>
 
+<p align="center">
+  <img
+    src="https://img.shields.io/badge/react-19-d1242f?style=flat-square&labelColor=1b1b1f"
+    alt="React 19"
+  />
+  <img
+    src="https://img.shields.io/badge/vite-8-d1242f?style=flat-square&labelColor=1b1b1f"
+    alt="Vite 8"
+  />
+  <img
+    src="https://img.shields.io/badge/typescript-5.9-d1242f?style=flat-square&labelColor=1b1b1f"
+    alt="TypeScript 5.9"
+  />
+  <img
+    src="https://img.shields.io/badge/pnpm-12-d1242f?style=flat-square&labelColor=1b1b1f"
+    alt="pnpm 12"
+  />
+  <img
+    src="https://img.shields.io/badge/pwa-offline-d1242f?style=flat-square&labelColor=1b1b1f"
+    alt="PWA"
+  />
+</p>
+
 # md2pdf
 
 Offline Markdown-to-PDF workspace. Edit Markdown, preview the printed page, and
@@ -26,7 +49,7 @@ and every asset it needs (including KaTeX fonts) are cached locally.
 
 ## Quick start
 
-Requires Node.js >= 20.19 and pnpm 10 (via corepack).
+Requires Node.js >= 22.12 and pnpm 12 (via corepack).
 
 ```bash
 pnpm install
@@ -70,6 +93,10 @@ docker compose up --build
 
 React 19, Vite 8, TypeScript, CodeMirror 6, unified/remark/rehype, KaTeX,
 Mermaid, paged.js, vite-plugin-pwa (Workbox).
+
+## License
+
+[MIT](LICENSE)
 
 ## Development
 

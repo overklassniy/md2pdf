@@ -18,12 +18,23 @@
     </clipPath>
   </defs>
 
-  <rect width="1200" height="380" rx="26" fill="#1b1b1f" />
+  <rect width="1200" height="380" rx="26" fill="#f6f4ee" />
+  <rect
+    x="12"
+    y="12"
+    width="1176"
+    height="356"
+    rx="18"
+    fill="none"
+    stroke="#1b1b1f"
+    stroke-opacity="0.14"
+    stroke-width="2"
+  />
 
   <g id="title-block" transform="translate(64 0)">
     <text
       x="2"
-      y="100"
+      y="80"
       font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
       font-size="18"
       letter-spacing="4"
@@ -36,7 +47,7 @@
       font-size="76"
       font-weight="800"
       letter-spacing="-2"
-      fill="#f6f4ee"
+      fill="#1b1b1f"
     >md2pdf</text>
     <rect x="3" y="182" width="172" height="5" rx="2.5" fill="#d1242f" />
     <text
@@ -44,14 +55,14 @@
       y="224"
       font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
       font-size="24"
-      fill="#a9aeb6"
+      fill="#4a4f57"
     >Edit Markdown, preview the printed page,</text>
     <text
       x="2"
       y="256"
       font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
       font-size="24"
-      fill="#a9aeb6"
+      fill="#4a4f57"
     >export to PDF — entirely in the browser.</text>
     <text
       x="2"
@@ -68,7 +79,7 @@
         width="200"
         height="236"
         rx="12"
-        fill="#232529"
+        fill="#1b1b1f"
         stroke="#3a3d44"
       />
       <circle cx="20" cy="20" r="4" fill="#d1242f" />
@@ -154,7 +165,7 @@
         width="204"
         height="236"
         rx="12"
-        fill="#f6f4ee"
+        fill="#ffffff"
         stroke="#d8d4ca"
       />
       <rect x="16" y="18" width="96" height="10" rx="2" fill="#1b1b1f" />
@@ -168,9 +179,9 @@
         <line x1="126" y1="115" x2="142" y2="115" stroke="#57606a" stroke-width="2" />
         <path d="M80 115 l-6 -3 v6 z" fill="#57606a" transform="translate(6 0)" />
         <path d="M142 115 l-6 -3 v6 z" fill="#57606a" transform="translate(6 0)" />
-        <rect x="20" y="104" width="44" height="22" rx="5" fill="#f6f4ee" stroke="#1b1b1f" stroke-width="2" />
+        <rect x="20" y="104" width="44" height="22" rx="5" fill="#ffffff" stroke="#1b1b1f" stroke-width="2" />
         <rect x="82" y="104" width="44" height="22" rx="5" fill="#1b1b1f" />
-        <rect x="144" y="104" width="44" height="22" rx="5" fill="#f6f4ee" stroke="#1b1b1f" stroke-width="2" />
+        <rect x="144" y="104" width="44" height="22" rx="5" fill="#ffffff" stroke="#1b1b1f" stroke-width="2" />
       </g>
 
       <rect x="16" y="148" width="160" height="6" rx="3" fill="#1b1b1f" opacity="0.22" />

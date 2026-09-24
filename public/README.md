@@ -6,8 +6,10 @@ Static assets copied verbatim into the build output.
 
 - `favicon.svg` — site icon; also referenced by the generated web manifest as
   the single app icon (`sizes: "any"`).
+- `og-image.svg` — 1200x630 Open Graph artwork in vector form; the source used
+  to rasterize `static/og-img.png`. Served at `/og-image.svg`.
 - `static/og-img.png` — Open Graph preview image used by `index.html`
-  (source: `assets/readme/og-image.svg`).
+  (source: `og-image.svg`).
 
 ## Notes
 

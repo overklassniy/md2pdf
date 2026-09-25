@@ -69,6 +69,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build date
+        id: date
+        run: echo "value=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+
+      # Attestation manifests wrap the pushed tag in an OCI image index;
+      # GHCR and Docker Hub read the package description from index-level
+      # annotations, not from the image config labels, so the OCI labels
+      # are repeated here as annotations.
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -82,5 +90,18 @@ jobs:
             ghcr.io/${{ github.repository }}:latest
             docker.io/${{ vars.DOCKERHUB_IMAGE || 'overklassniy/md2pdf' }}:dev
             docker.io/${{ vars.DOCKERHUB_IMAGE || 'overklassniy/md2pdf' }}:latest
+          annotations: |
+            index,manifest:org.opencontainers.image.title=md2pdf
+            index,manifest:org.opencontainers.image.description=Offline Markdown to PDF: edit, preview and print to PDF in the browser
+            index,manifest:org.opencontainers.image.url=https://github.com/${{ github.repository }}
+            index,manifest:org.opencontainers.image.documentation=https://github.com/${{ github.repository }}#readme
+            index,manifest:org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            index,manifest:org.opencontainers.image.authors=${{ github.repository_owner }}
+            index,manifest:org.opencontainers.image.vendor=${{ github.repository_owner }}
+            index,manifest:org.opencontainers.image.licenses=MIT
+            index,manifest:org.opencontainers.image.version=dev
+            index,manifest:org.opencontainers.image.revision=${{ github.sha }}
+            index,manifest:org.opencontainers.image.created=${{ steps.date.outputs.value }}
+            index,manifest:org.opencontainers.image.base.name=ghcr.io/static-web-server/static-web-server:2
           cache-from: type=gha
           cache-to: type=gha,mode=max

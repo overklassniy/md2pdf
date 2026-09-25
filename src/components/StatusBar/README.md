@@ -4,8 +4,8 @@ Bottom status bar.
 
 ## Contents
 
-- `StatusBar.tsx` — word, character and line counts from the current document plus the editor cursor position (`Ln:Col`).
-- `StatusBar.module.scss` — scoped styles.
+- `StatusBar.tsx` – word, character and line counts from the current document plus the editor cursor position (`Ln:Col`).
+- `StatusBar.module.scss` – scoped styles.
 
 ## Dependencies
 

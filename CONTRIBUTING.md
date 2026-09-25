@@ -59,14 +59,14 @@ pnpm dev
 
 Three GitHub Actions workflows live in `.github/workflows/`:
 
-- **ci** — on every push to `master` and every pull request: `pnpm lint`,
+- **ci** – on every push to `master` and every pull request: `pnpm lint`,
   `pnpm typecheck`, `pnpm test`, `pnpm build`, plus a Docker build smoke test.
-- **dev-image** — on pushes to `master` that affect image contents: publishes
+- **dev-image** – on pushes to `master` that affect image contents: publishes
   `:dev` and `:latest` tags to GHCR and Docker Hub.
-- **release** — on `v*` tags: re-runs lint/typecheck/test, then publishes
+- **release** – on `v*` tags: re-runs lint/typecheck/test, then publishes
   `:version`, `:major`, `:major.minor`, and `:latest` tags to GHCR and
   Docker Hub. No GitHub Release object is created; the tag is the release.
-- **dockerhub-sync** — on changes to `DOCKERHUB.md`: pushes it to the
+- **dockerhub-sync** – on changes to `DOCKERHUB.md`: pushes it to the
   Docker Hub repository overview and sets the short description.
 
 To cut a release:
@@ -77,7 +77,7 @@ git push origin v1.2.3
 ```
 
 The runtime image is a scratch container with a single static web server
-(`ghcr.io/static-web-server/static-web-server`) — no shell or package
+(`ghcr.io/static-web-server/static-web-server`) – no shell or package
 manager, about 5 MB plus the app bundle. There is intentionally no
 `HEALTHCHECK` in the image; check health from outside (`curl` the
 container, compose `healthcheck`, or your orchestrator). If an in-image
@@ -92,7 +92,7 @@ automatic `GITHUB_TOKEN`):
 | `DOCKERHUB_USERNAME` | Docker Hub account name                  |
 | `DOCKERHUB_TOKEN`    | Docker Hub access token with write scope |
 
-Optional repository variable: `DOCKERHUB_IMAGE` — overrides the Docker Hub
+Optional repository variable: `DOCKERHUB_IMAGE` – overrides the Docker Hub
 image name (default `overklassniy/md2pdf`). Without the secrets, pushes to
 Docker Hub are skipped and GHCR still works.
 

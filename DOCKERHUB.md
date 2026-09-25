@@ -1,7 +1,9 @@
+![md2pdf – offline Markdown to PDF workspace: a Markdown editor pane converts into a paginated PDF document](assets/readme/hero.svg)
+
 # md2pdf
 
 Offline Markdown-to-PDF workspace. Edit Markdown, preview the printed page, and
-export to PDF — entirely in the browser. As an installable PWA the app and every
+export to PDF – entirely in the browser. As an installable PWA the app and every
 asset it needs (including KaTeX fonts) are cached locally: no server-side
 processing, no uploads.
 
@@ -13,7 +15,7 @@ docker run -d -p 8080:80 overklassniy/md2pdf
 
 Open http://localhost:8080
 
-The image is a scratch container — a single static web server binary plus the
+The image is a scratch container – a single static web server binary plus the
 prebuilt app, about 5 MB plus the app bundle. The same image is published to
 GHCR:
 
@@ -23,9 +25,9 @@ docker run -d -p 8080:80 ghcr.io/overklassniy/md2pdf
 
 ## Tags
 
-- `latest` — latest stable release
-- `dev` — latest build of the `master` branch
-- `x.y.z`, `x.y`, `x` — semantic version tags for each release
+- `latest` – latest stable release
+- `dev` – latest build of the `master` branch
+- `x.y.z`, `x.y`, `x` – semantic version tags for each release
 
 ## Features
 

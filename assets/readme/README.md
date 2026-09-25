@@ -4,7 +4,7 @@ Visual assets for the root `README.md` and social previews.
 
 ## Contents
 
-- `hero.svg` — animated hero banner (SMIL: blinking caret, pulsing conversion
+- `hero.svg` – animated hero banner (SMIL: blinking caret, pulsing conversion
   arrow, print sweep). The first frame is a complete static scene, so the image
   still reads correctly where animation does not run.
 

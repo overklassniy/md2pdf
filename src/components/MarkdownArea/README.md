@@ -4,7 +4,7 @@ The split-view working area of the app.
 
 ## Contents
 
-- `MarkdownArea.tsx` — hosts the editor, the drag handle and the preview pane; wires `useDrop` (file drop loading) and `useScrollSync`, and owns the resizable split width.
+- `MarkdownArea.tsx` – hosts the editor, the drag handle and the preview pane; wires `useDrop` (file drop loading) and `useScrollSync`, and owns the resizable split width.
 
 ## Dependencies
 

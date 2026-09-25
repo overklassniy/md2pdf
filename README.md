@@ -2,11 +2,17 @@
   <img
     src="./assets/readme/hero.svg"
     width="100%"
-    alt="md2pdf — offline Markdown to PDF workspace: a Markdown editor pane converts into a paginated PDF document"
+    alt="md2pdf – offline Markdown to PDF workspace: a Markdown editor pane converts into a paginated PDF document"
   />
 </p>
 
 <p align="center">
+  <a href="https://hub.docker.com/r/overklassniy/md2pdf">
+    <img
+      src="https://img.shields.io/badge/docker-overklassniy%2Fmd2pdf-d1242f?style=flat-square&labelColor=1b1b1f"
+      alt="Docker Hub image"
+    />
+  </a>
   <img
     src="https://img.shields.io/badge/react-19-d1242f?style=flat-square&labelColor=1b1b1f"
     alt="React 19"
@@ -32,19 +38,19 @@
 # md2pdf
 
 Offline Markdown-to-PDF workspace. Edit Markdown, preview the printed page, and
-export to PDF — entirely in the browser. No server, no uploads: as a PWA the app
+export to PDF – entirely in the browser. No server, no uploads: as a PWA the app
 and every asset it needs (including KaTeX fonts) are cached locally.
 
 ## Features
 
-- **Fully offline** — installable PWA, zero network requests after first load.
-- **Live preview** — CodeMirror 6 editor beside the rendered document, scroll
+- **Fully offline** – installable PWA, zero network requests after first load.
+- **Live preview** – CodeMirror 6 editor beside the rendered document, scroll
   synced by source line; drag-and-drop or paste images straight into the editor.
-- **Print-grade export** — browser print-to-PDF, or paged.js pagination with
+- **Print-grade export** – browser print-to-PDF, or paged.js pagination with
   page numbers and running headers.
-- **Standalone HTML export** — a single self-contained `.html` file with all
+- **Standalone HTML export** – a single self-contained `.html` file with all
   styles inlined and KaTeX fonts embedded as data URIs; also `.md` download.
-- **Page setup** — A4 / Letter / Legal, portrait or landscape, four margin
+- **Page setup** – A4 / Letter / Legal, portrait or landscape, four margin
   presets.
 
 ## Quick start
@@ -82,13 +88,13 @@ docker compose up --build
 
 ## Exporting
 
-- **Print / Save as PDF** — plain mode injects `@page` size and margin rules and
+- **Print / Save as PDF** – plain mode injects `@page` size and margin rules and
   opens the browser print dialog. Paged mode additionally runs paged.js, which
   adds margin boxes: a running header (`@top-center`) and `page / total`
   counters (`@bottom-center`).
-- **Download .html** — all styles inlined; when the document contains math,
+- **Download .html** – all styles inlined; when the document contains math,
   KaTeX woff2 fonts are embedded as data URIs so the file renders fully offline.
-- **Download .md** — the raw Markdown source.
+- **Download .md** – the raw Markdown source.
 
 ## Tech stack
 

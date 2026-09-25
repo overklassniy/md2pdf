@@ -7,12 +7,10 @@
 </p>
 
 <p align="center">
-  <a href="https://hub.docker.com/r/overklassniy/md2pdf">
-    <img
+  <a href="https://hub.docker.com/r/overklassniy/md2pdf"><img
       src="https://img.shields.io/badge/docker-overklassniy%2Fmd2pdf-d1242f?style=flat-square&labelColor=1b1b1f"
       alt="Docker Hub image"
-    />
-  </a>
+  /></a>
   <img
     src="https://img.shields.io/badge/react-19-d1242f?style=flat-square&labelColor=1b1b1f"
     alt="React 19"

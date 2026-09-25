@@ -39,6 +39,14 @@ Offline Markdown-to-PDF workspace. Edit Markdown, preview the printed page, and
 export to PDF – entirely in the browser. No server, no uploads: as a PWA the app
 and every asset it needs (including KaTeX fonts) are cached locally.
 
+<p align="center">
+  <img
+    src="./assets/readme/demo.png"
+    width="100%"
+    alt="md2pdf app: CodeMirror Markdown editor on the left and a live paginated document preview with table of contents on the right"
+  />
+</p>
+
 ## Features
 
 - **Fully offline** – installable PWA, zero network requests after first load.

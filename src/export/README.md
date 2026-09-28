@@ -7,12 +7,15 @@ PDF export and file downloads.
 - `print.ts` – the export flow: resolves the document title (front matter → first H1 → `document`), injects dynamic `@page` CSS plus a code-block wrap rule for the paged path, optionally paginates through paged.js into `#print-root`, then calls `window.print()`. After printing (or on failure) the paged.js polisher is destroyed so its injected `<head>` styles do not accumulate or leak into HTML exports.
 - `pageSettings.ts` – `PageSettings` model, `buildPageCss()` (browser-facing `@page`: `size` + `margin`, with a zero sheet margin in paged mode) and `buildPagedPageCss()` (polisher-facing `@page`: real margin plus margin boxes for page numbers and running headers).
 - `exportFile.ts` – `.md` and standalone `.html` downloads. All styles are inlined except paged.js leftovers and the dynamic `@page` sheet. When the document contains math, KaTeX woff2 fonts are embedded as data URIs so the file renders fully offline (a CDN stylesheet is kept only as a fallback when every font fetch fails).
+- `printSupport.ts` – capability checks for the print flow: `isPrintSupported()` (does `window.print` exist) and `needsPrintHint()` (heuristic for iOS, where `window.print` exists but is a silent no-op and printing goes through Share > Print).
 - `pageSettings.test.ts` – CSS generation tests.
 - `print.test.ts` – regression tests asserting the generated `@page` rules
   reach `document.head` (plain mode) and the paged.js polisher (paged mode),
   plus polisher teardown on `afterprint`.
 - `exportFile.test.ts` – HTML export tests: meta tags, woff2 embedding,
   CDN fallback, and stylesheet filtering.
+- `printSupport.test.ts` – capability-check tests for iOS/desktop print
+  behavior.
 
 ## Notes
 

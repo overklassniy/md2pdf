@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import UploadButton from './UploadButton';
 import ExportMenu from './ExportMenu';
 import SettingsPanel from './SettingsPanel';
+import Toast from './Toast';
 import { useApp } from '../../state/context';
 import { printDocument } from '../../export/print';
+import { isPrintSupported, needsPrintHint } from '../../export/printSupport';
 import { exportHtml, exportMarkdown } from '../../export/exportFile';
 import styles from './Header.module.scss';
 
@@ -28,9 +31,25 @@ export default function Header({ getPreviewEl }: HeaderProps) {
     resetDocument,
   } = useApp();
 
+  const [toast, setToast] = useState<string | null>(null);
+
   const onPrint = () => {
     const previewEl = getPreviewEl();
     if (!previewEl) return;
+    if (!isPrintSupported()) {
+      exportHtml(previewEl, text).catch((err) =>
+        console.error('HTML export failed', err),
+      );
+      setToast(
+        'Printing is not available in this browser — the document was downloaded as HTML. Open the file to print it.',
+      );
+      return;
+    }
+    if (needsPrintHint()) {
+      setToast(
+        'If no print dialog appears, use Share > Print from the browser menu.',
+      );
+    }
     printDocument({ source: text, previewEl, settings }).catch((err) => {
       console.error('Print failed', err);
       window.print();
@@ -89,6 +108,7 @@ export default function Header({ getPreviewEl }: HeaderProps) {
           onExportHtml={onExportHtml}
         />
       </div>
+      {toast && <Toast message={toast} onDismiss={() => setToast(null)} />}
     </header>
   );
 }

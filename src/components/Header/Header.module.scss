@@ -5,12 +5,20 @@
   user-select: none;
   padding-left: 5px;
   padding-right: 5px;
+  padding-left: max(5px, env(safe-area-inset-left));
+  padding-right: max(5px, env(safe-area-inset-right));
   color: black;
   background-color: rgb(233, 233, 233);
   display: flex;
   align-items: center;
   height: 40px;
   gap: 4px;
+
+  // The header intentionally stays horizontally scrollable on phones;
+  // controls just get finger-sized.
+  @media (pointer: coarse) {
+    height: 48px;
+  }
 }
 
 .project {
@@ -18,6 +26,14 @@
   margin: 5px;
   flex-shrink: 0;
   height: 20px;
+}
+
+// The star iframe is the least useful item on a narrow screen; hiding it
+// shortens the scrollable header.
+@media (max-width: 400px) {
+  iframe.project {
+    display: none;
+  }
 }
 
 .menu {
@@ -39,6 +55,11 @@
   cursor: pointer;
   background: transparent;
   font: inherit;
+
+  @media (pointer: coarse) {
+    min-height: 40px;
+    padding: 0 14px;
+  }
 }
 
 .check {
@@ -48,6 +69,13 @@
   font-size: 0.85em;
   white-space: nowrap;
   cursor: pointer;
+
+  @media (pointer: coarse) {
+    input[type='checkbox'] {
+      width: 18px;
+      height: 18px;
+    }
+  }
 }
 
 .field {
@@ -75,5 +103,9 @@
 
   &:hover {
     background-color: #f6f8fa;
+  }
+
+  @media (pointer: coarse) {
+    padding: 10px 12px;
   }
 }

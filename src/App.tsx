@@ -3,12 +3,14 @@ import Header from './components/Header/Header';
 import MarkdownArea from './components/MarkdownArea/MarkdownArea';
 import StatusBar from './components/StatusBar/StatusBar';
 import { AppProvider } from './state/store';
+import { useVisualViewport } from './hooks/useVisualViewport';
 import type { CursorPosition } from './components/Editor/Editor';
 
 /**
  * Application shell: header, editor/preview split, status bar.
  */
 export default function App() {
+  useVisualViewport();
   const previewRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState<CursorPosition>({ line: 1, column: 1 });
 

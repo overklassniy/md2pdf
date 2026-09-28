@@ -39,4 +39,26 @@ describe('App', () => {
       await screen.findByText(/Awesome/, {}, { timeout: 5000 }),
     ).toBeInTheDocument();
   });
+
+  it('stacks the panes vertically on narrow screens', async () => {
+    const original = window.matchMedia;
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: true,
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })) as unknown as typeof window.matchMedia;
+    try {
+      render(<App />);
+      expect(document.querySelector('.app__main')).toHaveClass(
+        'app__main--column',
+      );
+    } finally {
+      window.matchMedia = original;
+    }
+  });
 });

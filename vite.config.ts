@@ -20,7 +20,7 @@ export default defineConfig({
         short_name: 'md2pdf',
         description:
           'Offline Markdown to PDF: edit, preview and print to PDF in the browser',
-        theme_color: '#000000',
+        theme_color: '#1b1b1f',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '.',

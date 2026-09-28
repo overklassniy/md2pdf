@@ -29,7 +29,12 @@ export default function Dropdown({ label, children }: DropdownProps) {
   const toggle = () => {
     if (!open && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
-      setPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+      // Clamp so the panel never slides past the left edge on narrow
+      // viewports where the right offset could go negative.
+      setPos({
+        top: rect.bottom + 4,
+        right: Math.max(8, window.innerWidth - rect.right),
+      });
     }
     setOpen((v) => !v);
   };

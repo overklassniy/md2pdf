@@ -19,7 +19,10 @@ interface EditorProps {
   onViewReady?: (view: EditorView) => void;
   /** Called whenever the cursor moves (for the status bar). */
   onCursorChange?: (pos: CursorPosition) => void;
-  width?: number;
+  /** Pane share of the split container, in percent (0-100). */
+  size?: number;
+  /** 'row' sizes the pane by width, 'column' by height. */
+  layout?: 'row' | 'column';
 }
 
 /**
@@ -33,7 +36,8 @@ export default function Editor({
   onChange,
   onViewReady,
   onCursorChange,
-  width,
+  size,
+  layout = 'row',
 }: EditorProps) {
   const extensions = useMemo(
     () => [
@@ -54,8 +58,13 @@ export default function Editor({
     onChange(next);
   };
 
+  const paneStyle: React.CSSProperties =
+    layout === 'column'
+      ? { width: '100%', height: size !== undefined ? `${size}%` : undefined }
+      : { width: size !== undefined ? `${size}%` : undefined };
+
   return (
-    <div className={styles.editor} style={{ width }}>
+    <div className={styles.editor} style={paneStyle}>
       <CodeMirror
         value={value}
         onChange={handleChange}

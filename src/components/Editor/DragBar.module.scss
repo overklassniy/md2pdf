@@ -1,12 +1,35 @@
 .dragbar {
+  position: relative;
   width: 15px;
   flex-shrink: 0;
   background-color: rgb(233, 233, 233);
   height: 100%;
   cursor: col-resize;
   user-select: none;
+  // Vertical bar: horizontal drags are ours, vertical pans may still scroll.
+  touch-action: pan-y;
+
+  &.horizontal {
+    width: 100%;
+    height: 15px;
+    cursor: row-resize;
+    touch-action: pan-x;
+  }
+
+  // Expand the hit area on touch devices without thickening the visual bar.
+  @media (pointer: coarse) {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 -14px;
+    }
+
+    &.horizontal::before {
+      inset: -14px 0;
+    }
+  }
 
   &.active {
-    background-color: #0984e3;
+    background-color: #d1242f;
   }
 }

@@ -2,6 +2,7 @@ html,
 body,
 #root {
   height: 100%;
+  height: 100dvh;
 }
 
 body {
@@ -11,12 +12,31 @@ body {
 
 .app {
   height: 100%;
+  height: 100dvh;
+  // --app-height is set from visualViewport.height so the layout stays inside
+  // the visible area on iOS Safari, where the on-screen keyboard resizes only
+  // the visual viewport and ignores interactive-widget.
+  height: var(--app-height, 100dvh);
   display: flex;
   flex-direction: column;
+  // The divider drag runs on the vertical axis in stacked mode; suppress
+  // pull-to-refresh so the gesture is not stolen mid-drag.
+  overscroll-behavior-y: none;
 }
 
 .app__main {
   flex: 1;
   min-height: 0;
   display: flex;
+}
+
+.app__main--column {
+  flex-direction: column;
+}
+
+button,
+label,
+select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }

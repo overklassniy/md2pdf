@@ -27,7 +27,7 @@ export default function StatusBar({ cursor }: StatusBarProps) {
   return (
     <footer className={`${styles.statusbar} no-print`}>
       <span>{stats.words} words</span>
-      <span>{stats.chars} chars</span>
+      <span className={styles.chars}>{stats.chars} chars</span>
       <span>{stats.lines} lines</span>
       <span className={styles.spacer} />
       <span>

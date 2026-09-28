@@ -101,6 +101,16 @@
     padding-bottom: 2px;
   }
 
+  // Wide tables overflow narrow viewports; let them scroll horizontally.
+  // Screen-scoped so the print path keeps normal table layout.
+  @media screen and (max-width: 767.98px) {
+    table {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+  }
+
   // Heading anchor links appear on hover, like on github.com. The class is
   // .heading-anchor — not .anchor — so github-markdown-css float/margin
   // rules never indent the heading text.
@@ -115,6 +125,11 @@
       text-decoration: none;
       opacity: 0;
       font-size: 0.8em;
+
+      // Touch devices have no hover; keep anchors visible but quiet.
+      @media (hover: none) {
+        opacity: 0.4;
+      }
     }
 
     &:hover .heading-anchor {

@@ -16,5 +16,12 @@
     line-height: 1.5;
     font-family:
       ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+    // iOS auto-zooms into editable elements below 16px on focus; enlarging
+    // the editor font on touch devices avoids the jarring zoom-in. Scroll
+    // sync is ratio/line-based, so the metric change is safe.
+    @media (pointer: coarse) {
+      font-size: 16px;
+    }
   }
 }

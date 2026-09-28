@@ -5,11 +5,21 @@
   align-items: center;
   gap: 16px;
   padding: 0 10px;
+  padding: 0 max(10px, env(safe-area-inset-right)) env(safe-area-inset-bottom)
+    max(10px, env(safe-area-inset-left));
   font-size: 0.75em;
   color: #57606a;
   background-color: rgb(233, 233, 233);
   border-top: 1px solid #d0d7de;
   user-select: none;
+}
+
+// The least useful counter yields room to the cursor position on tiny
+// screens.
+@media (max-width: 400px) {
+  .chars {
+    display: none;
+  }
 }
 
 .spacer {

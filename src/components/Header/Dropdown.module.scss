@@ -12,6 +12,10 @@
   position: fixed;
   z-index: 1000;
   min-width: 220px;
+  max-width: calc(100vw - 16px);
+  // Keeps tall menus reachable on landscape phones.
+  max-height: calc(100dvh - 60px);
+  overflow-y: auto;
   background: #ffffff;
   border: 1px solid #d0d7de;
   border-radius: 6px;

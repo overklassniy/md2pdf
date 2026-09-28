@@ -4,9 +4,22 @@
   width: 100%;
   height: 100%;
 
+  // In the stacked layout the wrapper is a column flex item; flex:1 with a
+  // zero minimum keeps it filling the space left by the editor instead of
+  // sizing to 100% of the container.
+  :global(.app__main--column) & {
+    flex: 1;
+    min-height: 0;
+    height: auto;
+  }
+
   :global(.markdown-body) {
     padding: 16px;
     min-height: 100%;
+
+    @media screen and (max-width: 767.98px) {
+      padding: 12px;
+    }
   }
 }
 

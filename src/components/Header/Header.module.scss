@@ -38,6 +38,11 @@
 
 .menu {
   width: 100%;
+  // When the viewport is narrower than the controls, the menu must grow
+  // past 100% and let the header scroll — otherwise items shrink to
+  // min-content (labels wrap and clip) and the flex-end alignment spills
+  // them leftward over the branding.
+  min-width: max-content;
   height: 100%;
   display: flex;
   align-items: center;
@@ -55,6 +60,7 @@
   cursor: pointer;
   background: transparent;
   font: inherit;
+  white-space: nowrap;
 
   @media (pointer: coarse) {
     min-height: 40px;

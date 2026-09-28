@@ -50,6 +50,10 @@ and every asset it needs (including KaTeX fonts) are cached locally.
 ## Features
 
 - **Fully offline** – installable PWA, zero network requests after first load.
+- **Mobile-ready** – below 768px the editor and preview stack vertically with a
+  touch-draggable divider; tap targets, safe-area insets and the on-screen
+  keyboard are handled, and browsers without `window.print()` fall back to the
+  standalone HTML export.
 - **Live preview** – CodeMirror 6 editor beside the rendered document, scroll
   synced by source line; drag-and-drop or paste images straight into the editor.
 - **Print-grade export** – browser print-to-PDF, or paged.js pagination with

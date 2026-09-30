@@ -12,8 +12,10 @@
 }
 
 // `pre` is intentionally absent: a code block taller than a page must be
-// allowed to fragment, otherwise it is clipped in the PDF output.
-table,
+// allowed to fragment, otherwise it is clipped in the PDF output. `table` is
+// absent for the same reason: a table that does not fit in the remaining
+// space would be pushed whole to the next page, leaving a large gap. Tables
+// fragment between rows instead, and browsers repeat thead on each page.
 img,
 blockquote,
 .katex-display,
@@ -21,6 +23,11 @@ blockquote,
 .directive,
 .markdown-alert,
 details {
+  break-inside: avoid;
+}
+
+// Rows stay atomic so a table never splits mid-row.
+tr {
   break-inside: avoid;
 }
 

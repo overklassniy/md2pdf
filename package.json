@@ -1,6 +1,6 @@
 {
   "name": "md2pdf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Offline Markdown to PDF: edit, preview and print to PDF in the browser",
   "keywords": [
